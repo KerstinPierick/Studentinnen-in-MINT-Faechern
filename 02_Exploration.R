@@ -20,31 +20,52 @@ library(tidyverse)
 
 # Daten einlesen ------------------------------------------------------------------------
 
-dat <- read_csv("Daten/tidy/studianfg_zusammfssg.csv") %>%
-  select(-semester)
+dat <- read_csv("Daten/tidy/studianfg_zusammfssg.csv") 
 
 # Abbildungen für alle Fachgruppen ------------------------------------------------------
 
+# Studi-Anfänger
 dat %>%
-  gather(geschlecht, studienanfaenger, -fg_code, -fg_name, -fach_name, -mint, -jahr) %>% 
+  filter(studi_typ == "anfaenger") %>%
   group_by(jahr, geschlecht, mint, fg_name) %>%
-  summarise(studienanfaenger = sum(studienanfaenger)) %>%
-  ggplot(dat, mapping = aes(x = jahr, y = studienanfaenger, fill = geschlecht)) + 
+  summarise(anzahl = sum(anzahl)) %>%
+  ggplot(dat, mapping = aes(x = jahr, y = anzahl, fill = geschlecht)) + 
+  geom_area() +
+  facet_wrap(~fg_name, scales = "free")
+
+# Studierende
+dat %>%
+  filter(studi_typ == "studis") %>%
+  group_by(jahr, geschlecht, mint, fg_name) %>%
+  summarise(anzahl = sum(anzahl)) %>%
+  ggplot(dat, mapping = aes(x = jahr, y = anzahl, fill = geschlecht)) + 
   geom_area() +
   facet_wrap(~fg_name, scales = "free")
 
 # Abbildung Mint/Rest-- -----------------------------------------------------------------
 
+# Studi-Anfänger
 dat %>%
-  gather(geschlecht, studienanfaenger, -fg_code, -fg_name, -fach_name, -mint, -jahr) %>% 
+  filter(studi_typ == "anfaenger") %>%
   group_by(jahr, geschlecht, mint) %>% 
-  summarise(studienanfaenger = sum(studienanfaenger)) %>%
-  ggplot(dat, mapping = aes(x = jahr, y = studienanfaenger, fill = geschlecht)) + 
+  summarise(anzahl = sum(anzahl)) %>%
+  ggplot(dat, mapping = aes(x = jahr, y = anzahl, fill = geschlecht)) + 
+  geom_area() +
+  facet_wrap(~mint, scales = "free")
+
+# Studierende
+dat %>%
+  filter(studi_typ == "studis") %>%
+  group_by(jahr, geschlecht, mint) %>% 
+  summarise(anzahl = sum(anzahl)) %>%
+  ggplot(dat, mapping = aes(x = jahr, y = anzahl, fill = geschlecht)) + 
   geom_area() +
   facet_wrap(~mint, scales = "free")
 
 
 # Frauenanteil Unterschied 1998/2017: Studiengangs-Ranking -------------------------------
+
+# Der ganze Teil funktioniert gerade nicht
 
 dat_frauenant <- dat %>% 
   mutate(frauenanteil = 100 * frauen / (frauen + maenner)) %>%
