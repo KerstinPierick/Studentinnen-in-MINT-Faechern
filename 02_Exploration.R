@@ -65,15 +65,16 @@ dat %>%
 
 # Frauenanteil Unterschied 1998/2017: Studiengangs-Ranking -------------------------------
 
-# Der ganze Teil funktioniert gerade nicht
-
-dat_frauenant <- dat %>% 
-  mutate(frauenanteil = 100 * frauen / (frauen + maenner)) %>%
+dat_frauenant <- dat %>%
+  spread(geschlecht, anzahl) %>%
+  mutate(frauenanteil = 100 * w / (w + m)) %>%
   # Nur das erste und letze Jahr, und keine Studiengänge mit weniger als 100 Studienanfängern
-  filter(jahr %in% c(1998, 2017) & (frauen + maenner) >= 100) %>%
-  select(-frauen, -maenner) %>%
+  filter(jahr %in% c(1998, 2017) & (w + m) >= 100) %>%
+  select(-w, -m) %>%
   spread(jahr, frauenanteil) %>%
   mutate(aenderung = `2017` - `1998`)
+
+# Für Studienanfänger und Studierende gemischt ---------
 
 # Die meisten Frauen 1998
 arrange(dat_frauenant, desc(`1998`))
@@ -91,6 +92,13 @@ arrange(dat_frauenant, aenderung)
 # Plot Änderung Vergleich Mint/Nicht Mint
 dat_frauenant %>% 
   ggplot(aes(x = aenderung, y = mint, color = mint)) +
-  geom_jitter()
+  geom_jitter() +
+  facet_wrap(~studi_typ, scales =  "free")
 
-
+# Scatterplot Studierende ~ Studi-Anfänger ----------------------------------------------
+dat %>% 
+  spread(geschlecht, anzahl) %>%
+  mutate(frauenanteil = 100 * w / (w + m)) %>%
+  spread(studi_typ, frauenanteil) %>%
+  ggplot(aes(anfaenger, studis)) +
+  geom_point()
