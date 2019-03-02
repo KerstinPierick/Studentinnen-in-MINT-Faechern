@@ -22,7 +22,7 @@ library(tidyverse)
 
 # Studienanfänger
 anfg <- read_csv2("Daten/tidy/studienanfaenger_tidy.csv", locale = locale(encoding = "latin1"))
-# Es gibt Probleme mit den Umlauten
+
 unique(anfg$fach_name) %>% sort
 
 
@@ -47,18 +47,18 @@ dat0 <- anfg %>%
 dat <- dat0 %>%
   # Ich habe hier erstmal deutsche und ausländische Studierende mit reingenommen, wir können 
   # überlegen, ob es sinnvoller ist, nur Deutsche zu nehmen 
-  select(semester, bundesland, fg_code, fg_name, fach_name, 
+  select(semester, bundesland, fg_code, fg_name, sb_code, sb_name, fach_name, 
          anfaenger_insg_w, anfaenger_insg_m, studis_insg_w, studis_insg_m) %>%
-  gather(key, anzahl, -semester, -bundesland, -fg_code, -fg_name, -fach_name) %>%
+  gather(key, anzahl, -semester, -bundesland, -fg_code, -fg_name, -sb_code, -sb_name, -fach_name) %>%
          # Die Bindestriche durch Nullen ersetzen
   mutate(anzahl = as.numeric(str_replace(anzahl, "-", "0")),
          # Neue Variable Mint: 1 für Mathe/Naturwissenschaften/Ingenieur, 0 für Rest
-         mint = if_else(fg_code %in% c(4, 8), 1, 0),
+         mint = if_else(fg_code %in% c(4, 8), "MINT", "Rest"),
          # Neue Variable: Extrahiert das Jahr aus semester
          jahr = as.numeric(str_sub(semester, 4, 7))) %>%
   # Den key in einzelne Variablen aufteilen
   separate(key, c("studi_typ", "nationalitaet", "geschlecht"), sep = "_") %>%
-  group_by(semester, fg_code, fg_name, fach_name, 
+  group_by(semester, fg_code, fg_name, sb_code, sb_name, fach_name, 
            studi_typ, nationalitaet, geschlecht, jahr, mint) %>%
   # Aufsummieren der Studis aller Bundesländer
   summarise(anzahl = sum(anzahl)) %>%

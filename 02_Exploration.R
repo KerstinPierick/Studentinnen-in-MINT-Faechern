@@ -17,13 +17,13 @@
 
 # Pakete laden --------------------------------------------------------------------------
 library(tidyverse)
+library(forcats)
 
 # Daten einlesen ------------------------------------------------------------------------
 
 dat <- read_csv("Daten/tidy/studianfg_zusammfssg.csv", 
                  col_types = list(jahr = col_double()),
-                 locale = locale(encoding = "UTF-8")) %>%
-  mutate(mint = ifelse(mint, "MINT", "Rest"))
+                 locale = locale(encoding = "UTF-8")) 
 dat
 
 # Wurden Umlaute korrekt dargestellt?
@@ -106,23 +106,14 @@ dat_frauenant %>%
 
 dat_frauenant %>% 
   ggplot(aes(x = mint, y = aenderung, color = mint)) +
-  geom_violin() +
   stat_summary(geom = "pointrange", fun.data = "mean_cl_boot") +
+  geom_violin() +
   facet_wrap(~studi_typ, scales =  "free") +
   geom_hline(aes(yintercept = 0), lty = 2) +
   coord_flip()
 
 
-# Scatterplot Studierende ~ Studi-Anfänger ----------------------------------------------
-dat %>% 
-  spread(geschlecht, anzahl) %>%
-  mutate(frauenanteil = 100 * w / (w + m)) %>%
-  spread(studi_typ, frauenanteil) %>%
-  ggplot(aes(anfaenger, studis)) +
-  geom_point()
-
-
-# Lineplot Frauenanteile pro Diszipline --------------------------------------------------
+# Lineplot Frauenanteile pro Disziplin --------------------------------------------------
 anteile <- dat %>% 
   group_by(fg_name, fach_name, jahr, studi_typ, mint, geschlecht) %>%
   summarize(anzahl = sum(anzahl)) %>%
@@ -140,3 +131,151 @@ anteile %>%
 #  geom_line(aes(group = fg_name), alpha = 0.2) +
   geom_hline(aes(yintercept = 50), lty = 2) +
   facet_grid(mint ~ studi_typ)
+
+
+
+# Nach Studienbereichen -----------------------------------------------------------------
+
+# Datensatz umbauen: Frauenanteile 
+anteile_sb <- dat %>%
+  group_by(fg_code, fg_name, sb_name, studi_typ, geschlecht, jahr, mint) %>%
+  summarise(anzahl = sum(anzahl)) %>%
+  spread(geschlecht, anzahl) %>%
+  mutate(frauenanteil = 100 * w / (w + m)) 
+
+# Abbildung Studienanfänger: Alle Fächergruppen
+
+anteile_sb %>%
+  filter(studi_typ == "anfaenger", fg_code != 10) %>%
+  ungroup() %>%
+  mutate(fg_name = fct_reorder(fg_name, frauenanteil, mean, na.rm  = T)) %>%
+  ggplot(aes(x = jahr, y = frauenanteil)) +
+  stat_summary(geom = "ribbon", 
+               fun.ymin = function(x) mean(x) -  sd(x) / sqrt(length(x)), 
+               fun.ymax = function(x) mean(x) +  sd(x) / sqrt(length(x)),
+               fill = "lightgrey") +
+  geom_line(aes( group = sb_name), color = "steelblue", alpha = 0.7) +
+  facet_wrap(~fg_name) +
+  stat_summary(geom = "line", fun.y = mean, lwd = 1.15) +
+  geom_hline(aes(yintercept = 50), lty = 2) 
+
+# Abbildung Studienanfänger: Nur Naturwissenschaften
+
+anteile_sb %>%
+  filter(studi_typ == "anfaenger", fg_code == 4) %>%
+  ggplot(aes(x = jahr, y = frauenanteil, color = sb_name)) +
+  geom_line() +
+  facet_wrap(~fg_name)
+
+# Abbildung Studienanfänger: Nur Ingenieure
+
+anteile_sb %>%
+  filter(studi_typ == "anfaenger", fg_code == 8) %>%
+  ggplot(aes(x = jahr, y = frauenanteil, color = sb_name)) +
+  geom_line() +
+  facet_wrap(~fg_name)
+
+# Abbildung Studierende: Alle Fächergruppen
+anteile_sb %>%
+  filter(studi_typ == "studis", fg_code != 10) %>%
+  ungroup() %>%
+  mutate(fg_name = fct_reorder(fg_name, frauenanteil, mean, na.rm  = T)) %>%
+  ggplot(aes(x = jahr, y = frauenanteil)) +
+  stat_summary(geom = "ribbon", 
+               fun.ymin = function(x) mean(x) -  sd(x) / sqrt(length(x)), 
+               fun.ymax = function(x) mean(x) +  sd(x) / sqrt(length(x)),
+               fill = "lightgrey") +
+  geom_line(aes( group = sb_name), color = "steelblue", alpha = 0.7) +
+  facet_wrap(~fg_name) +
+  stat_summary(geom = "line", fun.y = mean, lwd = 1.15) +
+  geom_hline(aes(yintercept = 50), lty = 2)
+
+# Abbildung Studierende: Nur Naturwissenschaften
+
+anteile_sb %>%
+  filter(studi_typ == "studis", fg_code == 4) %>%
+  ggplot(aes(x = jahr, y = frauenanteil, color = sb_name)) +
+  geom_line() +
+  facet_wrap(~fg_name)
+
+# Abbildung Studierende: Nur Ingenieure
+
+anteile_sb %>%
+  filter(studi_typ == "studis", fg_code == 8) %>%
+  ggplot(aes(x = jahr, y = frauenanteil, color = sb_name)) +
+  geom_line() +
+  facet_wrap(~fg_name)
+
+
+
+
+
+anteile_sb %>%
+  filter(fg_code != 10) %>%
+  ungroup() %>% 
+  select(-m, -w) %>%
+  spread(studi_typ, frauenanteil) %>%
+  mutate(prop_weibl_beginner = anfaenger / studis) %>%
+  ggplot(aes(x = jahr, y = prop_weibl_beginner)) +
+  stat_summary(geom = "ribbon", 
+               fun.ymin = function(x) mean(x) -  sd(x) / sqrt(length(x)), 
+               fun.ymax = function(x) mean(x) +  sd(x) / sqrt(length(x)),
+               fill = "lightgrey") +
+  geom_line(aes( group = sb_name), color = "steelblue", alpha = 0.7) +
+  facet_wrap(~fg_name) +#, scales = "free") +
+  stat_summary(geom = "line", fun.y = mean, lwd = 1.15) +
+  geom_hline(aes(yintercept = 1), lty = 2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Rankings nach Studienbereichen --------------------------------------------------------
+
+aenderung_sb <- anteile_sb %>% 
+  select(-m, -w) %>%
+  filter(jahr %in% c(1998, 2017)) %>%
+  spread(jahr, frauenanteil) %>%
+  mutate(aenderung = `2017` - `1998`)
+
+# Rankings Studienanfänger -------
+
+aenderung_anfg <- filter(aenderung_sb, studi_typ == "anfaenger")
+
+# Die meisten Frauen 1998
+arrange(aenderung_anfg, desc(`1998`))
+# Die wenigsten Frauen 1998 
+arrange(aenderung_anfg, `1998`)
+# Die meisten Frauen 2017
+arrange(aenderung_anfg, desc(`2017`))
+# Die wenigsten Frauen 2017
+arrange(aenderung_anfg, `2017`)
+# Die stärksten Zunahmen des Frauenanteils
+arrange(aenderung_anfg, desc(aenderung))
+# Die stärksten Abnahmen des Frauenanteils
+arrange(aenderung_anfg, aenderung)
+
+# Rankings Studierende -------
+
+aenderung_stud <- filter(aenderung_sb, studi_typ == "studis")
+
+# Die meisten Frauen 1998
+arrange(aenderung_stud, desc(`1998`))
+# Die wenigsten Frauen 1998 
+arrange(aenderung_stud, `1998`)
+# Die meisten Frauen 2017
+arrange(aenderung_stud, desc(`2017`))
+# Die wenigsten Frauen 2017
+arrange(aenderung_stud, `2017`)
+# Die stärksten Zunahmen des Frauenanteils
+arrange(aenderung_stud, desc(aenderung))
+# Die stärksten Abnahmen des Frauenanteils
+arrange(aenderung_stud, aenderung)
