@@ -21,7 +21,7 @@ library(forcats)
 library(plotly)
 
 # Grafiksettings laden
-source("R/gg_publication_themes_20181029.R")
+source("R/gg_screen_themes_20190302.R")
 
 # Daten einlesen ------------------------------------------------------------------------
 
@@ -157,11 +157,12 @@ anteile_sb %>%
   stat_summary(geom = "ribbon", 
                fun.ymin = function(x) mean(x) -  sd(x) / sqrt(length(x)), 
                fun.ymax = function(x) mean(x) +  sd(x) / sqrt(length(x)),
-               fill = "lightgrey") +
+               fill = "lightgrey", alpha = 0.8) +
   geom_line(aes( group = sb_name), color = "steelblue", alpha = 0.7) +
-  facet_wrap(~fg_name) +
+  facet_wrap(~fg_name, ncol = 2) +
   stat_summary(geom = "line", fun.y = mean, lwd = 1.15) +
-  geom_hline(aes(yintercept = 50), lty = 2) 
+  geom_hline(aes(yintercept = 50), lty = 2) +
+  theme_pub()
 
 # Abbildung Studienanfänger: Nur Naturwissenschaften
 
