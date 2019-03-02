@@ -18,6 +18,10 @@
 # Pakete laden --------------------------------------------------------------------------
 library(tidyverse)
 library(forcats)
+library(plotly)
+
+# Grafiksettings laden
+source("R/gg_publication_themes_20181029.R")
 
 # Daten einlesen ------------------------------------------------------------------------
 
