@@ -21,11 +21,13 @@ library(tidyverse)
 # Daten einlesen ------------------------------------------------------------------------
 
 # Studienanfänger
-anfg <- read_csv2("Daten/tidy/studienanfaenger_tidy.csv")
+anfg <- read_csv2("Daten/tidy/studienanfaenger_tidy.csv", locale = locale(encoding = "latin1"))
 # Es gibt Probleme mit den Umlauten
+unique(anfg$fach_name) %>% sort
+
 
 # Studierende
-studis <- read_csv2("Daten/tidy/studierende_tidy.csv")
+studis <- read_csv2("Daten/tidy/studierende_tidy.csv", locale = locale(encoding = "latin1"))
 
 
 # Fächergruppe 
@@ -53,7 +55,7 @@ dat <- dat0 %>%
          # Neue Variable Mint: 1 für Mathe/Naturwissenschaften/Ingenieur, 0 für Rest
          mint = if_else(fg_code %in% c(4, 8), 1, 0),
          # Neue Variable: Extrahiert das Jahr aus semester
-         jahr = str_sub(semester, 4, 7)) %>%
+         jahr = as.numeric(str_sub(semester, 4, 7))) %>%
   # Den key in einzelne Variablen aufteilen
   separate(key, c("studi_typ", "nationalitaet", "geschlecht"), sep = "_") %>%
   group_by(semester, fg_code, fg_name, fach_name, 
@@ -66,9 +68,8 @@ dat <- dat0 %>%
 
   
   
-
+sapply(dat, class)
 
 # Export --------------------------------------------------------------------------------
-
-write_csv(dat, "Daten/tidy/studianfg_zusammfssg.csv")
+write.csv(dat, "Daten/tidy/studianfg_zusammfssg.csv", row.names = FALSE)
 

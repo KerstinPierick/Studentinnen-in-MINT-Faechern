@@ -20,7 +20,13 @@ library(tidyverse)
 
 # Daten einlesen ------------------------------------------------------------------------
 
-dat <- read_csv("Daten/tidy/studianfg_zusammfssg.csv") 
+dat1 <- read_csv("Daten/tidy/studianfg_zusammfssg.csv", 
+                 col_types = list(jahr = col_double()),
+                 locale = locale(encoding = "UTF-8")) 
+
+# Wurden Umlaute korrekt dargestellt?
+unique(dat$fach_name) %>% sort # ja
+sapply(dat, function(x) sum(is.na(x)))
 
 # Abbildungen für alle Fachgruppen ------------------------------------------------------
 
