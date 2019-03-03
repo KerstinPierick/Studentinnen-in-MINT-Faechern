@@ -29,11 +29,31 @@ dat <- read_csv("Daten/tidy/studianfg_zusammfssg.csv",
                 col_types = list(jahr = col_double()),
                 locale = locale(encoding = "UTF-8")) 
 
-anteile_sb <- dat %>%
+ anteile_sb <- dat %>%
   group_by(fg_code, fg_name, sb_name, studi_typ, geschlecht, jahr, mint) %>%
   summarise(anzahl = sum(anzahl)) %>%
+  ungroup() %>%
   spread(geschlecht, anzahl) %>%
-  mutate(frauenanteil = 100 * w / (w + m)) 
+  mutate(frauenanteil = round(100 * w / (w + m), digits = 1)) %>%
+  group_by(sb_name) %>%
+  mutate(n_stud = sum(m + w)) %>%
+  ungroup() #%>%
+ 
+anteile_fg <- dat %>%
+  group_by( fg_name, studi_typ, geschlecht, jahr, fg_code) %>%
+  summarise(anzahl = sum(anzahl)) %>%
+  ungroup() %>%
+  spread(geschlecht, anzahl) %>%
+  mutate(Frauenanteil = round(100 * w / (w + m), digits = 1)) %>%
+  filter(!is.na(Frauenanteil)) %>%
+  mutate(standardfehler = sqrt(Frauenanteil/100 * (1 - Frauenanteil/100) / (w + m))) %>%
+  rename(Jahr = jahr) %>%
+  filter(fg_code != 10) %>%
+  ungroup() %>%
+  mutate(fg_name = gsub("ae", "ä", fg_name),
+         fg_name = fct_reorder(fg_name, Frauenanteil, mean, na.rm  = T))
+  
+anteile_fg
 
 # Studienanfänger -----------------------------------------------------------------------
 
@@ -43,21 +63,26 @@ anteile_sb <- dat %>%
   ungroup() %>%
   mutate(fg_name = gsub("ae", "ä", fg_name),
     fg_name = fct_reorder(fg_name, Frauenanteil, mean, na.rm  = T)) %>%
-  ggplot(aes(x = Jahr, y = Frauenanteil)) +
-  stat_summary(geom = "ribbon", 
-               fun.ymin = function(x) mean(x) -  sd(x) / sqrt(length(x)), 
-               fun.ymax = function(x) mean(x) +  sd(x) / sqrt(length(x)),
-               fill = "lightgrey", alpha = 0.8) +
-  geom_line(aes( group = Studienbereich), color = "steelblue", alpha = 0.7) +
+  ggplot(aes(x = Jahr)) +
+  # geom_ribbon(data = anteile_fg, aes(ymin = Frauenanteil - 2*standardfehler * 1000,
+  #                                    ymax = Frauenanteil + 2*standardfehler * 1000),
+  #             fill = "lightgrey", alpha = 0.8) + 
+  geom_line(aes(y = Frauenanteil, group = Studienbereich), color = "steelblue", alpha = 0.7) +
+  geom_line(data = filter(anteile_fg, studi_typ == "anfaenger"), aes(y = Frauenanteil), lwd = 1.15) + 
   facet_wrap(~fg_name, ncol = 2) +
-  stat_summary(geom = "line", fun.y = mean, lwd = 1.15) +
   geom_hline(aes(yintercept = 50), lty = 2) +
-  labs(title = "Studienanfänger", x = "Jahr", y = "Frauenanteil (%)") +
-  theme_screen())# +
- #coord_equal(ratio = 5/25)) +
+  labs(title = "Frauenanteil bei den Studienanfängern", x = "Jahr", y = "Frauenanteil (%)\n", 
+       caption = "Roman Matthias Link und Kerstin Pierick 2019 
+                  Quelle: Statistisches Bundesamt Deutschland") +
+  theme_screen() +
+  theme(plot.margin = unit(c(3, 3, 3, 10), "mm"))) 
 
 
-(p_anfg1 <- ggplotly(p_anfg, width = 800, height = 1400))
+p_anfg1 <- ggplotly(p_anfg, width = 700, height = 1050) %>%
+    layout(annotations = list(x = 2012, y = 8, font = list(size =8),
+text = "Roman Matthias Link und Kerstin Pierick 2019
+Quelle: Statistisches Bundesamt Deutschland", 
+showarrow = FALSE))
 saveWidget(p_anfg1, "p_anfaenger.html")
 
 # Studierende ---------------------------------------------------------------------------
@@ -68,19 +93,35 @@ saveWidget(p_anfg1, "p_anfaenger.html")
    ungroup() %>%
    mutate(fg_name = gsub("ae", "ä", fg_name),
           fg_name = fct_reorder(fg_name, Frauenanteil, mean, na.rm  = T)) %>%
-   ggplot(aes(x = Jahr, y = Frauenanteil)) +
-   stat_summary(geom = "ribbon", 
-                fun.ymin = function(x) mean(x) -  sd(x) / sqrt(length(x)), 
-                fun.ymax = function(x) mean(x) +  sd(x) / sqrt(length(x)),
-                fill = "lightgrey", alpha = 0.8) +
-   geom_line(aes( group = Studienbereich), color = "steelblue", alpha = 0.7) +
+   ggplot(aes(x = Jahr)) +
+   # geom_ribbon(data = anteile_fg, aes(ymin = Frauenanteil - 2*standardfehler * 1000,
+   #                                    ymax = Frauenanteil + 2*standardfehler * 1000),
+   #             fill = "lightgrey", alpha = 0.8) + 
+   geom_line(aes(y = Frauenanteil, group = Studienbereich), color = "steelblue", alpha = 0.7) +
+   geom_line(data = filter(anteile_fg, studi_typ == "studis"), aes(y = Frauenanteil), lwd = 1.15) + 
    facet_wrap(~fg_name, ncol = 2) +
-   stat_summary(geom = "line", fun.y = mean, lwd = 1.15) +
    geom_hline(aes(yintercept = 50), lty = 2) +
-   labs(title = "Studierende", x = "Jahr", y = "Frauenanteil (%)") +
-   theme_screen())# +
-#coord_equal(ratio = 5/25)) +
+   labs(title = "Frauenanteil bei den Studierenden", x = "Jahr", y = "Frauenanteil (%)\n", 
+        caption = "Roman Matthias Link und Kerstin Pierick 2019 
+                  Quelle: Statistisches Bundesamt Deutschland") +
+   theme_screen() +
+   theme(plot.margin = unit(c(3, 3, 3, 10), "mm"))) 
 
 
-(p_stud1 <- ggplotly(p_stud, width = 800, height = 1400))
+p_stud1 <- ggplotly(p_stud, width = 700, height = 1050) %>%
+  layout(annotations = list(x = 2012, y = 8, font = list(size =8),
+                            text = "Roman Matthias Link und Kerstin Pierick 2019
+Quelle: Statistisches Bundesamt Deutschland", 
+                            showarrow = FALSE))
 saveWidget(p_stud1, "p_studis.html")
+
+# Absolute Zahlen Studi-Anfänger --------------------------------------------------------
+
+dat %>%
+  filter(studi_typ == "anfaenger") %>%
+  filter(fg_code != 10)  %>%
+  group_by(jahr, geschlecht, mint, fg_name) %>%
+  summarise(anzahl = sum(anzahl)) %>%
+  ggplot(dat, mapping = aes(x = jahr, y = anzahl, fill = geschlecht)) + 
+  geom_area() +
+  facet_wrap(~fg_name, scales = "free", ncol = 2)

@@ -17,7 +17,7 @@ theme_screen <- function(base_size = 10, base_family = "Helvetica") { # helvetic
           axis.title.y = element_text(angle = 90, 
                                       vjust = 0), 
           axis.title.x = element_text(vjust = 1), 
-          axis.text = element_text(size = rel(1.2)), 
+          axis.text = element_text(size = rel(1)), 
           axis.line = element_line(colour = "black"), 
           axis.ticks = element_line(), 
           panel.grid.major = element_line(colour = "grey"),
@@ -39,7 +39,7 @@ theme_screen <- function(base_size = 10, base_family = "Helvetica") { # helvetic
                                     size = rel(1.2), 
                                     hjust = 0.5), 
           strip.text = element_text(face = "bold", 
-                                    size = rel(1.2)), 
+                                    size = rel(1)), 
           strip.background = element_blank()
     )
 }
