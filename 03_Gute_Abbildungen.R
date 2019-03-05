@@ -88,7 +88,7 @@ labs <- tibble(fg_name = unique(anteile_fg$fg_name), # nötig um Änderung der F
 # Konvertieren in plotly html-Widget
 p_anfg1 <- ggplotly(p_anfg, width = 700, height = 1050)
 # Export als html-Widget
-saveWidget(p_anfg1, "p_anfaenger.html")
+saveWidget(p_anfg1, "p_rel_anf.html")
 
 # 03 Plot des Frauenanteils: Studierende ------------------------------------------------
 # Erstellen von ggplot2-Objekt
@@ -111,16 +111,49 @@ saveWidget(p_anfg1, "p_anfaenger.html")
 # Konvertieren in plotly html-Widget
 p_studi1 <- ggplotly(p_studi, width = 700, height = 1050)
 # Export als html-Widget
-saveWidget(p_studi1, "p_studis.html")
+saveWidget(p_studi1, "p_rel_stud.html")
 
 
 # 04 Absolute Zahlen: Studi-AnfängerInnen -----------------------------------------------
+# vorbereiten des Brandings
+labs1 <- mutate(labs, y = 3000)
 
-dat %>%
+# vorbereiten der Daten (aus anteile_fg, da hier schon korrekt aggregiert und geordnet)
+absdat <- anteile_fg %>%
+  select(-Frauenanteil) %>%
+  gather(geschlecht, anzahl, m, w) %>%
+  mutate(Geschlecht = ifelse(geschlecht == "m", "männlich", "weiblich"))
+  
+
+# Erstellen des Plots
+anf_abs <- absdat %>%
   filter(studi_typ == "anfaenger") %>%
-  filter(fg_code != 10)  %>%
-  group_by(jahr, geschlecht, mint, fg_name) %>%
-  summarise(anzahl = sum(anzahl)) %>%
-  ggplot(dat, mapping = aes(x = jahr, y = anzahl, fill = geschlecht)) + 
-  geom_area() +
-  facet_wrap(~fg_name, scales = "free", ncol = 2)
+  ggplot() + 
+  geom_area(aes(x = Jahr, y = anzahl, fill = Geschlecht), alpha = 0.9, col = 1, size = 0.4) +
+  geom_text(data = labs1, aes(x = x, y = y, label = label), size = 2.24) +
+  facet_wrap(~fg_name, scales = "free", ncol = 2)  +
+  theme_screen() +
+  labs(title = "Absolute Zahlen StudienanfängerInnen", x = "Jahr", y = "Anzahl") +
+  scale_fill_manual(values = c("#FF8400", "#336B22"))
+
+
+# Export als plotly html-Widget
+ggplotly(anf_abs, width = 700, height = 1050) %>%
+saveWidget("p_abs_anf.html")
+
+# 05 Absolute Zahlen: Studierende -----------------------------------------------
+# Erstellen des Plots
+stud_abs <- absdat %>%
+  filter(studi_typ == "studis") %>%
+  ggplot() + 
+  geom_area(aes(x = Jahr, y = anzahl, fill = Geschlecht), alpha = 0.9, col = 1, size = 0.4) +
+  geom_text(data = labs1, aes(x = x, y = y, label = label), size = 2.24) +
+  facet_wrap(~fg_name, scales = "free", ncol = 2)  +
+  theme_screen() +
+  labs(title = "Absolute Zahlen Studierende", x = "Jahr", y = "Anzahl") +
+  scale_fill_manual(values = c("#FF8400", "#336B22"))
+
+# Export als plotly html-Widget
+ggplotly(anf_abs, width = 700, height = 1050) %>%
+  saveWidget("p_abs_stud.html")
+
