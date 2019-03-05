@@ -27,7 +27,8 @@ source("R/gg_screen_themes_20190302.R")
 
 dat <- read_csv("Daten/tidy/studianfg_zusammfssg.csv", 
                  col_types = list(jahr = col_double()),
-                 locale = locale(encoding = "UTF-8")) 
+                 locale = locale(encoding = "UTF-8")) %>%
+  mutate(anzahl = ifelse(is.na(anzahl), 0, anzahl)) # NA-Studierendenzahlen (von nicht existenten Fächern) für Summen auf 0 setzen
 dat
 
 # Wurden Umlaute korrekt dargestellt?
