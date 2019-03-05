@@ -217,7 +217,7 @@ ext_anf <- extreme %>%
   geom_hline(aes(yintercept = `Duchschnittliche Änderung bei den StudienanfängerInnen`), lty = 2) +
   coord_flip() +
   theme_screen() +
-  labs(title = "Änderung des Frauenanteils bei den StudienfängerInnen 1998-2017", y = "Änderung des Frauenanteils") +
+  labs(title = "Änderung des Frauenanteils bei den StudienfängerInnen 1998-2017", y = "Änderung des Frauenanteils (Prozentpunkte)") +
   facet_wrap(~which, scales = "free", ncol = 1) +
   scale_fill_manual(values = c("#FF8400", "#336B22")) +
   theme(legend.position = "none",
@@ -242,7 +242,7 @@ ext_stud <- extreme %>%
   geom_hline(aes(yintercept = `Duchschnittliche Änderung bei den Studierenden`), lty = 2) +
   coord_flip() +
   theme_screen() +
-  labs(title = "Änderung des Frauenanteils bei den Studierenden 1998-2017", y = "Änderung des Frauenanteils") +
+  labs(title = "Änderung des Frauenanteils bei den Studierenden 1998-2017", y = "Änderung des Frauenanteils (Prozentpunkte)") +
   facet_wrap(~which, scales = "free", ncol = 1) +
   scale_fill_manual(values = c("#FF8400", "#336B22")) +
   theme(legend.position = "none",
