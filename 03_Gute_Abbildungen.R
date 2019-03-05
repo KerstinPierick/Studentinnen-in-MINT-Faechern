@@ -197,7 +197,8 @@ extreme <- changes  %>%
   mutate(lo5 = ordfun(change, 10),
          hi5 = ordfun(change, 10, desc = TRUE),
          extreme = lo5 | hi5,
-         change = round(change, 2)) %>%
+         `Änderung` = round(change, 2),
+         Richtung = ifelse(sign(change) > 0, "Zunahme", "Abnahme")) %>%
   filter(extreme) 
 extreme
 
@@ -208,9 +209,10 @@ ext_anf <- extreme %>%
   ungroup()%>%
   filter(studi_typ == "anfaenger") %>%
   mutate(Studienbereich = gsub("wirtschaftswiss.", "wi.wi.", Studienbereich),
+         Studienbereich = gsub("Wirtschafts", "Wirtsch.", Studienbereich),
          Studienbereich = fct_reorder(Studienbereich, change, mean),
          which = ifelse(hi5, "Stärkste Zunahme", "Stärkste Abnahme")) %>%
-  ggplot(aes(x = Studienbereich, y = change, fill = factor(sign(change)))) +
+  ggplot(aes(x = Studienbereich, y = `Änderung`, fill = Richtung)) +
   geom_col(col = 1, size = 0.4, alpha = 0.9) + 
   geom_hline(aes(yintercept = `Duchschnittliche Änderung bei den StudienanfängerInnen`), lty = 2) +
   coord_flip() +
@@ -232,9 +234,10 @@ ext_stud <- extreme %>%
   ungroup()%>%
   filter(studi_typ == "studis") %>%
   mutate(Studienbereich = gsub("wirtschaftswiss.", "wi.wi.", Studienbereich),
+         Studienbereich = gsub("Wirtschafts", "Wirtsch.", Studienbereich),
          Studienbereich = fct_reorder(Studienbereich, change, mean),
          which = ifelse(hi5, "Stärkste Zunahme", "Stärkste Abnahme")) %>%
-  ggplot(aes(x = Studienbereich, y = change, fill = factor(sign(change)))) +
+  ggplot(aes(x = Studienbereich, y = `Änderung`, fill = Richtung)) +
   geom_col(col = 1, size = 0.4, alpha = 0.9) + 
   geom_hline(aes(yintercept = `Duchschnittliche Änderung bei den Studierenden`), lty = 2) +
   coord_flip() +
