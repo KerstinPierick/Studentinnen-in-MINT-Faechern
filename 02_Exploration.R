@@ -215,7 +215,7 @@ anteile_sb %>%
 
 
 
-
+# Rel. Anteile von Studienbeginnern -----------------------------------------------------
 anteile_sb %>%
   filter(fg_code != 10) %>%
   ungroup() %>% 
