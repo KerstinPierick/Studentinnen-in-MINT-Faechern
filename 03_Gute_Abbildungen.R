@@ -63,7 +63,7 @@ labs <- tibble(fg_name = unique(anteile_fg$fg_name), # nötig um Änderung der F
                x = 2007.5,
                y = 12,
                label = ifelse(fg_name == "Geisteswissenschaften",
-                 "Roman Matthias Link und Kerstin Pierick 2019\nQuelle: Statistisches Bundesamt Deutschland",
+                 "Roman Mathias Link und Kerstin Pierick 2019\nQuelle: Statistisches Bundesamt Deutschland",
                  NA)
 )
 
