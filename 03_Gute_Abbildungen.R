@@ -67,7 +67,8 @@ labs <- tibble(fg_name = unique(anteile_fg$fg_name), # nötig um Änderung der F
                  NA)
 )
 
-# 02 Plot des Frauenanteils: StudienanfängerInnen ---------------------------------------
+# 02 Relative Frauenanteile -------------------------------------------------------------
+# a) StudienanfängerInnen ---------------------------------------------------------------
 # Erstellen von ggplot2-Objekt
 (p_anfg <- anteile_sb %>%
   rename(Jahr = jahr, Studienbereich = sb_name, Frauenanteil = frauenanteil) %>%
@@ -90,7 +91,7 @@ p_anfg1 <- ggplotly(p_anfg, width = 700, height = 1050)
 # Export als html-Widget
 saveWidget(p_anfg1, "p_rel_anf.html")
 
-# 03 Plot des Frauenanteils: Studierende ------------------------------------------------
+# b) Studierende ------------------------------------------------------------------------
 # Erstellen von ggplot2-Objekt
 (p_studi <- anteile_sb %>%
    rename(Jahr = jahr, Studienbereich = sb_name, Frauenanteil = frauenanteil) %>%
@@ -114,7 +115,7 @@ p_studi1 <- ggplotly(p_studi, width = 700, height = 1050)
 saveWidget(p_studi1, "p_rel_stud.html")
 
 
-# 04 Absolute Zahlen: Studi-AnfängerInnen -----------------------------------------------
+# 03 Absolute Zahlen --------------------------------------------------------------------
 # vorbereiten des Brandings
 labs1 <- mutate(labs, y = 3000)
 
@@ -124,9 +125,9 @@ absdat <- anteile_fg %>%
   gather(geschlecht, anzahl, m, w) %>%
   mutate(Geschlecht = ifelse(geschlecht == "m", "männlich", "weiblich"))
   
-
+# a) StudienanfängerInnen ---------------------------------------------------------------
 # Erstellen des Plots
-anf_abs <- absdat %>%
+abs_anf <- absdat %>%
   filter(studi_typ == "anfaenger") %>%
   ggplot() + 
   geom_area(aes(x = Jahr, y = anzahl, fill = Geschlecht), alpha = 0.9, col = 1, size = 0.4) +
@@ -138,12 +139,12 @@ anf_abs <- absdat %>%
 
 
 # Export als plotly html-Widget
-ggplotly(anf_abs, width = 700, height = 1050) %>%
+ggplotly(abs_anf, width = 700, height = 1050) %>%
 saveWidget("p_abs_anf.html")
 
-# 05 Absolute Zahlen: Studierende -----------------------------------------------
+# b) Studierende ------------------------------------------------------------------------
 # Erstellen des Plots
-stud_abs <- absdat %>%
+abs_stud <- absdat %>%
   filter(studi_typ == "studis") %>%
   ggplot() + 
   geom_area(aes(x = Jahr, y = anzahl, fill = Geschlecht), alpha = 0.9, col = 1, size = 0.4) +
@@ -154,6 +155,98 @@ stud_abs <- absdat %>%
   scale_fill_manual(values = c("#FF8400", "#336B22"))
 
 # Export als plotly html-Widget
-ggplotly(anf_abs, width = 700, height = 1050) %>%
+ggplotly(abs_stud, width = 700, height = 1050) %>%
   saveWidget("p_abs_stud.html")
+
+# 03 Änderungen des Frauenanteils -------------------------------------------------------
+# neue Studiengänge
+new <- anteile_sb %>% 
+  filter(jahr == 1998 & (m + w == 0)) %>%
+  .$sb_name %>% unique
+  
+#  Vorbereitung des Datensatzes
+changes <- anteile_sb %>%
+  filter(!(sb_name %in% new),
+         fg_code != 10) %>%
+  rename(Studienbereich = sb_name) %>%
+  ungroup() %>%
+  mutate(Studienbereich = gsub("ae", "ä", Studienbereich)) %>%
+  filter(jahr %in% c(1998, 2017)) %>% 
+  group_by(Studienbereich, studi_typ, mint) %>%
+  summarize(change = frauenanteil[2] - frauenanteil[1])
+changes
+
+# Mittelwerte
+changes %>% group_by(mint, studi_typ) %>%
+ summarize(change = mean(change))
+mean(changes$change)
+
+# mittelwerte Anfänger/Studis
+mchange <- tapply(changes$change, changes$studi_typ, mean) %>% round(2)
+
+# Funktion für logischen Vektor für die n extremsten Werte in einem Vektor
+ordfun <- function(x, n,  desc = FALSE){
+  if(desc) x %in% sort(x, decreasing = TRUE)[1:n]
+  else x %in%sort(x)[1:n]
+}
+
+# extremste Änderungen bei den Studis
+extreme <- changes  %>% 
+  ungroup() %>%
+  group_by(studi_typ) %>%
+  mutate(lo5 = ordfun(change, 10),
+         hi5 = ordfun(change, 10, desc = TRUE),
+         extreme = lo5 | hi5,
+         change = round(change, 2)) %>%
+  filter(extreme) 
+extreme
+
+# a) StudienanfängerInnen ---------------------------------------------------------------
+`Duchschnittliche Änderung bei den StudienanfängerInnen` <- mchange[1]
+# make plot
+ext_anf <- extreme %>% 
+  ungroup()%>%
+  filter(studi_typ == "anfaenger") %>%
+  mutate(Studienbereich = gsub("wirtschaftswiss.", "wi.wi.", Studienbereich),
+         Studienbereich = fct_reorder(Studienbereich, change, mean),
+         which = ifelse(hi5, "Stärkste Zunahme", "Stärkste Abnahme")) %>%
+  ggplot(aes(x = Studienbereich, y = change, fill = factor(sign(change)))) +
+  geom_col(col = 1, size = 0.4, alpha = 0.9) + 
+  geom_hline(aes(yintercept = `Duchschnittliche Änderung bei den StudienanfängerInnen`), lty = 2) +
+  coord_flip() +
+  theme_screen() +
+  labs(title = "Änderung des Frauenanteils bei den StudienfängerInnen 1998-2017", y = "Änderung des Frauenanteils") +
+  facet_wrap(~which, scales = "free", ncol = 1) +
+  scale_fill_manual(values = c("#FF8400", "#336B22")) +
+  theme(legend.position = "none",
+        axis.title.y = element_blank())
+
+# Export als plotly html-Widget
+ggplotly(ext_anf, width = 700, height = 700) %>%
+  saveWidget("p_ext_anf.html")
+
+# b) Studierende ------------------------------------------------------------------------
+`Duchschnittliche Änderung bei den Studierenden` <- mchange[2]
+# make plot
+ext_stud <- extreme %>% 
+  ungroup()%>%
+  filter(studi_typ == "studis") %>%
+  mutate(Studienbereich = gsub("wirtschaftswiss.", "wi.wi.", Studienbereich),
+         Studienbereich = fct_reorder(Studienbereich, change, mean),
+         which = ifelse(hi5, "Stärkste Zunahme", "Stärkste Abnahme")) %>%
+  ggplot(aes(x = Studienbereich, y = change, fill = factor(sign(change)))) +
+  geom_col(col = 1, size = 0.4, alpha = 0.9) + 
+  geom_hline(aes(yintercept = `Duchschnittliche Änderung bei den Studierenden`), lty = 2) +
+  coord_flip() +
+  theme_screen() +
+  labs(title = "Änderung des Frauenanteils bei den Studierenden 1998-2017", y = "Änderung des Frauenanteils") +
+  facet_wrap(~which, scales = "free", ncol = 1) +
+  scale_fill_manual(values = c("#FF8400", "#336B22")) +
+  theme(legend.position = "none",
+        axis.title.y = element_blank())
+
+
+# Export als plotly html-Widget
+ggplotly(ext_stud, width = 700, height = 700) %>%
+  saveWidget("p_ext_stud.html")
 
