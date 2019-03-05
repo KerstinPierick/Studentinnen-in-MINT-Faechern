@@ -107,7 +107,8 @@ arrange(dat_frauenant, aenderung)
 dat_frauenant %>% 
   ggplot(aes(x = aenderung, y = mint, color = mint)) +
   geom_jitter() +
-  facet_wrap(~studi_typ, scales =  "free")
+  facet_wrap(~studi_typ, scales =  "free") +
+  geom_vline(aes(xintercept = 0), lty = 2)
 
 dat_frauenant %>% 
   ggplot(aes(x = mint, y = aenderung, color = mint)) +
@@ -162,8 +163,7 @@ anteile_sb %>%
   geom_line(aes( group = sb_name), color = "steelblue", alpha = 0.7) +
   facet_wrap(~fg_name, ncol = 2) +
   stat_summary(geom = "line", fun.y = mean, lwd = 1.15) +
-  geom_hline(aes(yintercept = 50), lty = 2) +
-  theme_pub()
+  geom_hline(aes(yintercept = 50), lty = 2)
 
 # Abbildung Studienanfänger: Nur Naturwissenschaften
 
@@ -285,3 +285,4 @@ arrange(aenderung_stud, `2017`)
 arrange(aenderung_stud, desc(aenderung))
 # Die stärksten Abnahmen des Frauenanteils
 arrange(aenderung_stud, aenderung)
+
