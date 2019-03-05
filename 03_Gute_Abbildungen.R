@@ -158,7 +158,7 @@ abs_stud <- absdat %>%
 ggplotly(abs_stud, width = 700, height = 1050) %>%
   saveWidget("p_abs_stud.html")
 
-# 03 Änderungen des Frauenanteils -------------------------------------------------------
+# 04 Änderungen des Frauenanteils -------------------------------------------------------
 # neue Studiengänge
 new <- anteile_sb %>% 
   filter(jahr == 1998 & (m + w == 0)) %>%
@@ -252,4 +252,49 @@ ext_stud <- extreme %>%
 # Export als plotly html-Widget
 ggplotly(ext_stud, width = 700, height = 700) %>%
   saveWidget("p_ext_stud.html")
+
+
+
+# 05 Relation Frauenanteil AnfängerInnen/Studis -----------------------------------------
+# Umbauen von Daten auf Fächergruppenlevel
+ratio_fg <- anteile_fg %>%
+  select(-m, -w) %>%
+  spread(studi_typ, Frauenanteil) %>%
+  mutate(`Rel. Frauenanteil AnfängerInnen zu Studis` = anfaenger / studis)
+
+
+# Erstellen von ggplot2-Objekt
+ratio <- 
+  anteile_sb %>%
+  filter(fg_code != 10) %>%
+  rename(Jahr = jahr, Studienbereich = sb_name, Frauenanteil = frauenanteil) %>%
+  ungroup() %>%
+  mutate(fg_name = gsub("ae", "ä", fg_name),
+         fg_name = fct_reorder(fg_name, Frauenanteil, mean, na.rm  = T)) %>%
+  select(-m, -w) %>%
+  spread(studi_typ, Frauenanteil) %>%
+  mutate(`Rel. Frauenanteil AnfängerInnen zu Studis` = anfaenger / studis) %>%
+  ggplot(aes(x = Jahr)) +
+  geom_line(aes(y = `Rel. Frauenanteil AnfängerInnen zu Studis`, group = Studienbereich), color = "steelblue", alpha = 0.7) +
+  geom_line(data = ratio_fg, aes(y = `Rel. Frauenanteil AnfängerInnen zu Studis`), lwd = 1.15) + 
+  geom_text(data = mutate(labs, y = 0.8), aes(x = x, y = y, label = label), size = 2.24) +
+  facet_wrap(~fg_name, ncol = 2) +
+  geom_hline(aes(yintercept = 1), lty = 2) +
+  labs(title = "Verhältnis Frauenanteil StudienanfängerInnen zu Studierenden", 
+       x = "Jahr", y = "(Frauenanteil AnfängerInnen) / (Frauenanteil Studierende)\n") +
+  theme_screen() +
+  theme(plot.margin = unit(c(3, 3, 3, 10), "mm"))
+
+# Export als plotly html-Widget
+ggplotly(ratio, width = 700, height = 1050) %>%
+  saveWidget("p_prob_ratio_frauenanteil.html")
+
+# Interpretation: Verhältnis > 1 - rel. mehr Frauen unter Studienanfängern als 
+# unter Studierenden
+# Generell steigen die Studierendenzahlen an, daher ist eine zeitlich verzögerte
+# Zunahme der Frauen unter den Studierenden zu erwarten, auch wenn der Anteil der 
+# Studienanfängerinnen gleich bleibt.
+# Nimmt die Zahl der weiblichen Studis nicht zu gibt es zwei potentielle Erklärungen:
+# 1) längere Studiendauer bei Männern
+# 2) höhere Abbrecherquoten bei Frauen
 
