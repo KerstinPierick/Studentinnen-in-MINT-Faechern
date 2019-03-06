@@ -19,6 +19,7 @@
 library(tidyverse)
 library(forcats)
 library(plotly)
+library(magrittr)
 
 # Grafiksettings laden
 source("R/gg_screen_themes_20190302.R")
@@ -35,6 +36,20 @@ dat
 unique(dat$fach_name) %>% sort # ja
 # gibt es NA-Werte?
 sapply(dat, function(x) sum(is.na(x)))
+
+# ein paar Zahlen für den Fließtext -----------------------------------------------------
+dat %>% group_by(studi_typ, jahr, geschlecht) %>%
+  filter(jahr %in% c(1998, 2017)) %>%
+  summarize(anzahl = sum(anzahl, na.rm = T)) %>%
+  spread(jahr, anzahl) %>%
+  mutate(proz_zunahme = 100 *(`2017` / `1998` - 1))
+
+dat %>% group_by(studi_typ, jahr) %>%
+  filter(jahr %in% c(1998, 2017)) %>%
+  summarize(anzahl = sum(anzahl, na.rm = T)) %>%
+  spread(jahr, anzahl) %>%
+  mutate(proz_zunahme = 100 *(`2017` / `1998` - 1))
+
 
 # Abbildungen für alle Fachgruppen ------------------------------------------------------
 
