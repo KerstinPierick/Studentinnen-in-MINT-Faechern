@@ -9,27 +9,51 @@ output: beamer_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## Das Thema
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Hat sich in den letzten zwanzig Jahren der Frauenanteil in MINT-Fächern überproportional geändert?
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+## Die Daten
 
-## Slide with Bullets
+- Quelle: Statistisches Bundesamt Deutschland (www.destatis.de) 
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+- Struktur: 
+    - Alle Hochschulen Deutschlands
+    - Jahre 1998-2017
+    - Aufgeschlüsselt nach Studiengängen, Geschlecht, Nationalität (In-/Ausland), Bundesland der Hochschule
+    - StudienanfängerInnen und Studierende 
 
-## Slide with R Output
+ - Zusatzdaten: "Studierende an Hochschulen - Fächersystematik" (pdf)
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
 
-## Slide with Plot
+## Datenumformung
 
-```{r pressure}
-plot(pressure)
-```
+ - Herausfiltern der benötigten Informationen: Nationalität und Bundesland nicht benötigt
+ - Encoding: Korrektes Einlesen von Umlauten, leere Felder = 0 
+ - Zusammenfügen von StudienanfängerInnen, Studierenden und Fächersystematik
+ - Berechnen neuer Variablen (Frauenanteil)
+ - Zusammenfassen nach Gruppen
 
+
+## Technische Umsetzung
+
+  - Einlesen, zusammenfügen und Umwandeln der Daten: R
+  - Abbildungen: ggplot2 (R-Paket)
+  - Interaktive Abbildungen: ggplotly (R-Paket)
+  - HTML-Dokument mit Text und Abbildungen: R Markdown
+  - Präsentation: Latex Beamer in R Markdown
+  - Versionsverwaltung, Backup, Provider für die Internetseite: GitHub
+
+
+## Interview mit ExpertIn
+
+Angefragt: 
+
+ - Prof. Petra Lucht, Gender Studies, TU Berlin
+ - Dr. Martina Erlemann, Gender Studies/Physik, FU Berlin
+ - Anna Lena Martins, Gleichstellungsbeauftragte Mathematik, Uni Göttingen
+ - **Dr. Sophie-Charlotte August, Gleichstellungsbeauftragte Physik, Uni Göttingen**
+ 
+## Das Stück
+
+Link zur Website
