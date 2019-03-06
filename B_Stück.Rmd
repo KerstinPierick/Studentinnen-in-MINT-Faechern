@@ -15,25 +15,23 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 source("03_Gute_Abbildungen.R")
 ```
 
-*VIELLEICHT EIN KURZER CATCHY TEXT (MINI-ABSTRACT FÜR ZEITUNGSARTIKEL IN ZWEI SÄTZEN)* <!-- nennen Journalisten übrigens Anreißer ^^-->
+*VIELLEICHT EIN KURZER CATCHY TEXT (MINI-ABSTRACT FÜR ZEITUNGSARTIKEL IN ZWEI SÄTZEN)* 
+<!-- nennen Journalisten übrigens Anreißer ^^-->
+<!-- Du wusstest, was ich meine ;-) -->
 
-## Einleitender Teil / Einführung ins Thema
 
- - Die Gesellschaft hat sich gewandelt, alte Vorstellungen von Geschlechterrollen werden über den Haufen geworfen und die halbe Welt diskutiert über Feminismus. 
- <!-- Die ganze Welt? Nein! Ein von unbeugsamen Galliern bevölkertes  Dorf hört nicht auf... -->
- - Eigentlich kann jeder heute unabhängig vom Geschlecht alles werden, man könnte meinen, dass sich das auch bei der Fächerwahl junger StudienanfängerInnen widerspiegelt.
- - Klassischerweise waren Frauen in den sogenannten MINT-Fächern (Mathematik, Informatik, Naturwissenschaften, Technick) immer besonders unterrepräsentiert.
- - Vielleicht Verweis auf Gender-Paygap, dass diese Berufe (vor allem technische, Info) oft besser bezahlt sind/bessere Job-Perspektiven bieten? 
- <!-- finde ich gut, da das einen großen Teil des GPG ausmacht -->
- - Seit Jahr XY gab es Initiativen und Förderprogramme, um diese Fächer für Mädchen und Frauen attraktiver zu machen (RECHERCHE: Was für Initiativen? Seit wann? Vielleicht noch wen fragen? Frau August konnte dazu nicht wirklich was sagen. Persönlich habe ich nur den Girls' Day mitbekommen)
- - Uns interessiert, ob sich diese Entwicklungen in den Studierendenzahlen widerspiegeln, und ob sich insbesondere in den letzten Jahrzehnten der Frauenanteil in unterschiedlichen Fachbereichen in unterschiedliche Richtungen bewegt hat. Deswegen haben wir einen Datensatz des [Statistischen Bundesamtes Deutschland](www.destatis.de) mit den Anzahlen der Studierenden und StudienanfängerInnen an deutschen Hochschulen seit 1998 aufbereitet. 
+Eigentlich stehen Frauen in Deutschland heute alle Türen offen. Die feministische Bewegung mit ihren vielfältigen Unterströmungen hat seit ihren Anfängen im vorletzten Jahrhundert zahlreiche Rechte für Frauen erkämpft, die lange undenkbar waren. Dennoch halten sich manche Klischees hartnäckig: Technik und Naturwissenschaften seien "was für Männer", soziale, künstlerische und kommunikative Aufgaben hingegen "Frauensache". Das spiegelt sich immer noch in der Berufswahl junger Menschen wider. Die Folgen sind gravierend: "Typische Männerberufe", vor allem technische, sind oft besser bezahlt als "typische Frauenberufe". Dieser Unterschied trägt erheblich zu der Gender Pay Gap bei. <!-- mehr erklären -->
+
+"Statistisch belegbar sind die enormen Bildungsanstrengungen, die den Mädchen und Frauen in den vergangenen Jahrzehnten gelungen sind. Sie erwerben höhere Schulabschlüsse, ihr Ausbildungsstand ist hervorragend, der Anteil von Hochschulabsolventinnen ist signifikant gestiegen, Frauen promovieren, es gibt mehr weibliche Vorbilder und Role Models" schreibt das Bundesministerium für Bildung und Forschung auf seiner [Website zum Thema Chancengerechtigkeit und Vielfalt im Wissenschaftssystem](https://www.bmbf.de/de/mint-pakt-und-girls-day-214.html). Weiterhin heißt es dort: "Sie haben hervorragende Qualifikationen, oftmals bessere Schulnoten als ihre männlichen Altersgenossen und viele von ihnen bringen ein Interesse an Technik mit: Junge Frauen sind heute so gut ausgebildet wie nie zuvor und trotzdem ergreifen immer noch vergleichsweise wenige von ihnen ein MINT-Studium."
+
+Diverse Förderprogramme wurden in den letzten Jahren ins Leben gerufen, um MINT-Fächer für Mädchen und Frauen attraktiver zu machen. Ein Beispiel ist das seit 2008 bestehende ["Komm mach MINT" - Nationaler Pakt für Frauen in MINT-Berufen](https://www.komm-mach-mint.de/), durch das das Bundesministerium für Bildung und Forschung zusammen mit zahlreichen Partnern junge Frauen für Karrieren in naturwissenschaftlich-technischen Berufen gewinnen möchte. Seit 2001 gibt es jedes Jahr den [Girl's Day](https://www.girls-day.de/), an dem Schülerinnen einen Tag lang typische Männerberufe ausprobieren können. Viele weitere Förderprogramme sind [hier](https://www.academics.de/ratgeber/mint-frauen-in-technischen-berufen) aufgelistet.
+
+Um zu untersuchen, ob sich diese Fördermaßnahmen in den Studierendenzahlen widerspiegeln und ob sich insbesondere in den letzten Jahrzehnten der Frauenanteil in unterschiedlichen Fachbereichen in unterschiedliche Richtungen bewegt hat, haben wir einen Datensatz des [Statistischen Bundesamtes Deutschland](www.destatis.de) mit den Anzahlen der Studierenden und StudienanfängerInnen an deutschen Hochschulen seit 1998 aufbereitet. 
 
 ## Änderungen der Studierenden in verschiedenen Fachbereichen in absoluten Zahlen
 ### StudienanfängerInnen
-<!-- Hier würde ich immer erst Beschreibung, dann Grafik, dann nächsten Kommentar und nächste Grafik zeigen. Also die Grafiken direkt in den Text einbinden (ist näher dran an der Art und Weise, wie Leute Artikel lesen, und macht insbesondere beim Medium html wo die Leute durchscrollen am meisten Sinn). Ich habe die Captions erst mal kursiv gemac ht, würde sie aber bevorzugt ganz rausschmeißen. -->
- - Betrachtet man die absoluten Zahlen der StudienanfängerInnen von 1998 bis 2017, so fällt auf, dass über den Beobachtungszeitraum in allen Fächergruppen die Anzahl bei beiden Geschlechtern anstieg
- - Bei Ingenieurwissenschaften und Sport gab es damals wie heute mehr Männer, bei Mathematik und Naturwissenschaften war es annähernd ausgewogen, in allen anderen Fachgruppen gab es über den gesamten Zeitraum mehr Frauen
- - Dabei scheinen sich die Geschlechterverhältnisse so gut wie nicht zu verändern
+
+Betrachtet man die absoluten Zahlen der StudienanfängerInnen von 1998 bis 2017, so fällt auf, dass über den Beobachtungszeitraum in allen Fächergruppen die Anzahl bei beiden Geschlechtern anstieg. Bei Ingenieurwissenschaften und Sport gab es damals wie heute mehr Männer, bei Mathematik und Naturwissenschaften war es annähernd ausgewogen, in allen anderen Fachgruppen gab es über den gesamten Zeitraum mehr Frauen. Dabei scheinen sich die Geschlechterverhältnisse so gut wie nicht zu verändern.
 
 ```{r abs_anf, fig.cap= "**Abb. 1** *StudienanfängerInnen in Deutschland seit 1998 nach Geschlecht und Fächergruppe*"}
 ggplotly(abs_anf, width = 700, height = 1050)
@@ -41,8 +39,7 @@ ggplotly(abs_anf, width = 700, height = 1050)
 
 
 ### Studierende
- - Die stetige Zunahme der StudienanfängerInnen spiegelt sich in einer deutlichen Zunahme der Gesamtzahl an Studierenden wieder <!-- Besonders bei Medizinern schön zu sehen dass eine lineare Zunahme ein exponentielles Wachstum zur Folge hat -- leider nix für unsere Leser... ^^ -->
- - Die Muster scheinen bei StudienanfängerInnen und Studierenden auf den ersten Blick sehr ähnlich zu sein, man erkennt aber deutlicher als bei den AnfängerInnen dass der Frauenanteil in einigen Fachbereichen zu steigen scheint.
+Die stetige Zunahme der StudienanfängerInnen spiegelt sich in einer deutlichen Zunahme der Gesamtzahl an Studierenden wieder. Die Muster scheinen bei StudienanfängerInnen und Studierenden auf den ersten Blick sehr ähnlich zu sein, man erkennt aber deutlicher als bei den AnfängerInnen, dass der Frauenanteil in einigen Fachbereichen zu steigen scheint.
 
 ```{r abs_stud, fig.cap= "**Abb. 2** *Studierende in Deutschland seit 1998 nach Geschlecht und Fächergruppe*"}
 ggplotly(abs_stud, width = 700, height = 1050)
@@ -52,54 +49,45 @@ ggplotly(abs_stud, width = 700, height = 1050)
 
 ## Änderungen des Frauenanteils in verschiedenen Fachbereichen 
 ### Studienanfängerinnen 
- - Tatsächlich hat sich der Frauenanteil bei den AnfängerInnen in den letzten 20 Jahren in den meisten Fächergruppen nicht wesentlich geändert
- - Nur leichte Anstiege in den Bereichen Humanmedizin/Gesundheitswissenschaften (57,8% auf 70%) und Ingenieurwissenschaften (19,4% auf 24,6%)
- - Insgesamt ist der Frauenanteil bei den IngenieurInnen mit Abstand am niedrigsten, dann kommt Sport, bei Mathematik/Naturwissenschaften liegt er bei ca. 50%, bei allen anderen drüber. 
- - StudienanfängerInnen der Geisteswissenschaften haben den höchsten Frauenanteil (71% 2017).
- - Die Gruppen sind oft recht heterogen, einzelne Studienbereiche stechen heraus:
-    - Es gibt Ingeneurwissenschaften, die inzwischen bei den StudienanfängerInnen einen Frauenanteil von über 50% haben (Raumplanung, Architektur)
-    - Physik fangen relativ viel weniger Frauen an als die restlichen Naturwissenschaften
-    - Im Bereich Agrar-, Forst-, Ernährungswissenschaften und Veterinärmedizin stechen die Forstwissenschaften durch einen besonders niedrigen Frauenanteil bei den StudienanfängerInnen hervor (2017: 36%); bei Veterinärmedizin und Ernährungs- und Haushaltswissenschaften lag er 2017 jeweils über 80%
+
+Der Frauenanteil der StudienanfängerInnen blieb in den letzten 20 Jahren in vielen Diszipinen im Wesentlichen konstant. Nur in den Bereichen Humanmedizin/Gesundheitswissenschaften (57,8% auf 70%), Rechts-, Wirtschafts- und Sozialwissenschaften (53,9% auf 59,6%) und Ingenieurwissenschaften (19,4% auf 24,6%) gab es deutlich sichtare Anstiege. Insgesamt war und ist der Frauenanteil bei den IngenieurInnen mit Abstand am niedrigsten, gefolgt von Sport, bei Mathematik/Naturwissenschaften lag er bei ca. 50%, bei allen anderen Fächergruppen gab es mehr Frauen als Männer. StudienanfängerInnen der Geisteswissenschaften haben den höchsten Frauenanteil (71% 2017).
+
+Auffällig ist die Heterogenität innerhalb der Fächergruppen. Während die StudienanfängerInnen in den meisten Ingenieurwissenschaften nur einen Frauenanteil von unter 30% haben, wird ein Studium der Raumplanung oder Architektur inzwischen von mehr Frauen als Männern begonnen. In den Naturwissenschaften gibt es in der Physik mit Abstand die wenigsten Studienanfängerinnen. Im Bereich Agrar-, Forst-, Ernährungswissenschaften und Veterinärmedizin stechen die Forstwissenschaften durch einen besonders niedrigen Frauenanteil bei den StudienanfängerInnen heraus (2017: 36%); bei Veterinärmedizin und Ernährungs- und Haushaltswissenschaften lag er 2017 jeweils über 80%.
 
 ```{r rel_anf, fig.cap="**Abb. 3** *Frauenanteil in Prozent bei StudienanfängerInnen in Deutschland seit 1998. Blau: Frauenanteile der einzelnen Studienbereiche. Schwarz: Frauenanteile der gesamten Fächergruppen.*"}
 ggplotly(p_anfg, width = 700, height = 1050)
 ``` 
     
 ### Studierende
- - Bei den Studierenden sind die Unterschiede zwischen den Fächergruppen und Studienbereichen sehr ähnlich <!-- zu was? den AnfängerInnen? -->
-  - Im Gegensatz zu den StudienanfängerInnen sieht man hier jedoch bei den vielen Fächergruppen leichte Aufwärtstrends
-     - Sichtbare Zunahme bei Medizinern, Ingenieuren, Jura, WiWi, Sozialwissenschaften (starker Aufwärtstrend bei Erstis)
-     - Stagnation bei MatNat, Geisteswissenschaften, Agrar/Forst/usw und Kunst (Kaum Änderung bei Erstis)
-     - Abnahme nur bei Sportlern (Erstis konstant mit <50% Frauenanteil)
+Bei den Studierenden sind die Unterschiede zwischen den Fächergruppen und Studienbereichen sehr ähnlich wie bei den AnfängerInnen - insgesamt zeichnen sich die selben Fächer durch jeweils hohe oder niedrige Frauenanteile und ähnliche Änderungstendenzen aus. Im Gegensatz zu den StudienanfängerInnen sieht man hier jedoch bei vielen Fächergruppen deutlichere Aufwärtstrends. Sichtbare Zunahmen gibt es bei Medizinern, Ingenieuren und Rechts-, Wirtschafts- und Sozialwissenschaften. In den Disziplinen Mathematik/Naturwissenschaften, Geisteswissenschaften und Agrar-/Forst-/Ernährungswissenschaften/Veterinärmedizin stagnierte das Geschlechterverhältnis der Studierenden, nur bei Sport-Studierenden gab es eine Abnahme des Frauenanteils. Diese Tendenzen decken sich überwiegend mit den Veränderungen der StudienanfängerInnen, die einzige Ausnahme bildet hier Sport - dort sank der Frauenanteil der Studierenden trotz des konstant bleibenden Frauenanteils der StudienanfängerInnen.
+
     
 ```{r rel_stud, fig.cap="**Abb. 4** *Frauenanteil in Prozent bei Studierenden in Deutschland seit 1998. Blau: Frauenanteile der einzelnen Studienbereiche. Schwarz: Frauenanteile der gesamten Fächergruppen.*"}
 ggplotly(p_studi, width = 700, height = 1050)
 ``` 
- 
 
-## Interview mit DR. Sophie-Charlotte August
 <!-- Mein Vorschlag wäre, diese Aussagen an verschiedenen passenden Stellen im Text einfließen zu lassen, anstatt sie in eine gesonderte Sektion zu schieben. Dafür gibt das Interview a) nicht genug her und b) lässt es den Text kompetenter erscheinen, wenn an wichtigen Stellen so etwas steht wie "Nach Aussage von Dr. SC August" oder "Dr. August bestätigt" oder so -->
- - Wir haben Dr. Sophie-Charlotte August vom Gleichstellungsbüro der Fakultät für Physik an der Georg-August-Universität Göttingen gefragt, warum der Frauenanteil in den MINT-Studienfächern immer noch so niedrig ist. 
- - "Das fängt schon früh an: Schon im Kindergartenalter prägen geschlechtertypische Rollenklischees die Interessen. Später in der Schule werden Mädchen laut einer Studie in den MINT-Fächern bei gleicher Leistung um bis zu 0.9 Notenpunkte schlechter benotet als Jungen." Außerdem fehlen, so Dr. August, konkrete Berufsbilder. "Auch später, während ihrer wissenschaftlichen Karriere, müssen Frauen in männerdominierten Domänen oft stärker um Anerkennung und Respekt ringen als ihre männlichen Kollegen."
+<!-- Sehe ich auch so, nur war das an dieser Stelle eine lange zusammenhängende Antwort auf eine Frage -->
+
+Wir haben Dr. Sophie-Charlotte August vom Gleichstellungsbüro der Fakultät für Physik an der Georg-August-Universität Göttingen gefragt, warum der Frauenanteil in den MINT-Studienfächern immer noch so niedrig ist. "Das fängt schon früh an: Schon im Kindergartenalter prägen geschlechtertypische Rollenklischees die Interessen. Später in der Schule werden Mädchen laut einer Studie in den MINT-Fächern bei gleicher Leistung um bis zu 0.9 Notenpunkte schlechter benotet als Jungen." Außerdem fehlen, so  August, konkrete Berufsbilder. "Auch später, während ihrer wissenschaftlichen Karriere, müssen Frauen in männerdominierten Domänen oft stärker um Anerkennung und Respekt ringen als ihre männlichen Kollegen."
  
  
 ## In welchen Studienfächern haben sich die Frauenanteile von 1998 bis 2017 am stärksten geändert?
 ### StudienanfängerInnen
- - Insgesamt steigen also die Frauenanteile - aber steigen sie in den bisher männerdominierten MINT-Fächern überproportional schnell?
- - Das lässt sich so nicht sagen, es gibt weder bei den AnfängerInnen noch bei den Studierenden eindeutige Muster, bei welchen Fächern sich das Geschlechterverhältnis am schnellsten ändert.
- - Bei den StudienanfängerInnen sind mehrere stark männerdominierte Fächer mit in den Top 10 der Fächer mit dem stärksten Zuwachs des Frauenanteils (Wirtschaftsingenieurswesen, Physik, Elektrotechnik, Informatik)
- - Jedoch nahm auch bei Fächern, die schon stark weiblich dominiert waren, der Frauenanteil teilweise beträchtlich zu (Bildende Kunst, (Zahn-)medizin).
- - Der Frauenanteil sank vor allem im Bereich Mathematik/Naturwissenschaften allgemein (enthält hauptsächlich Lehramtsstudiengänge <!-- ich habe den Verdacht, dass das mit einer Umstrukturierung der Lehramtsstudiengänge zusammenhängen könnte, da die Änderung so abrupt ist -->), Regionalwissenschaften <!-- was ist das eigentlich? --> und Musik sowie Sport (nur bei Studierenden). 
- - Ein klares Muster ist hier also nicht zu erkennen.
+
+Insgesamt steigen also die Frauenanteile in vielen Fächern - aber steigen sie in den bisher männerdominierten MINT-Fächern überproportional schnell, eventuell als Folge der oben genannten Fördermaßnahmen? Das lässt sich so nicht sagen, es gibt weder bei den AnfängerInnen noch bei den Studierenden eindeutige Muster, in welchen Disziplinen sich das Geschlechterverhältnis am schnellsten ändert. 
+
+Bei den StudienanfängerInnen sind mehrere männerdominierte Fächer mit in den Top 10 der Fächer mit dem stärksten Zuwachs des Frauenanteils (Wirtschaftsingenieurwesen, Physik, Elektrotechnik, Informatik). Jedoch nahm auch bei weiblich dominierten Fächern der Frauenanteil teilweise beträchtlich zu (Bildende Kunst, (Zahn-)medizin). Der Frauenanteil sank vor allem im Bereich Mathematik/Naturwissenschaften allgemein [^1], Regionalwissenschaften und Musik. 
+
+[^1]: Dieser Studienbereich beinhaltet interdisziplinäre Fächer und Lehramts-Studiengänge. Wir vermuten, dass die starken Änderungen durch Neuzuweisungen in der Fächerklassifikation entstanden sind.
 
 ```{r ext_anf, fig.cap= "**Abb. 5** *Studienbereiche mit den stärksten Änderungen des Frauenanteils bei StudienanfängerInnen 1998 - 2017. Gestrichelte Linie: Änderung des Frauenanteils aller Studierenden.*"}
 ggplotly(ext_anf, width = 700, height = 700)
 ```
 
 ### Studierende
- - auch bei den Studierenden befinden sich unter den Fächern mit dem stärksten Zuwachs sowohl einige klassische Männerdomänen (Physik, Wirtschaftsingenieurswesen, Forstwissenschaften und Bauingenieurswesen) als auch einige klassich frauendominierte Fächer (Zahnmedizin, Raumplanung, Architektur (?))
- - ...und auch die Abhnahmen betreffen sowohl klassische Männer- und Frauendomänen.
- - Interessant ist, dass bis auf 7 Studiengänge (blau in Abb. 6) es bei allen Studiengängen über das Beobachtungsintervall eine Zunahme des Frauenanteils unter den Studierenden gab
+
+Auch bei den Studierenden befinden sich unter den Fächern mit dem stärksten Zuwachs sowohl einige klassische Männerdomänen (Physik, Wirtschaftsingenieurswesen, Forstwissenschaften und Bauingenieurswesen) als auch mit Zahnmedizin und Humanmedizin zwei schon lange frauendominierte Fächer. Ein klares Muster ist hier also nicht zu erkennen. Auch die Abhnahmen betreffen klassische Männer- und Frauendomänen. Interessant ist, dass bis auf 7 Studiengänge (blau in Abb. 6) es bei allen Studiengängen über das Beobachtungsintervall eine Zunahme des Frauenanteils unter den Studierenden gab.
 
 ```{r ext_stud, fig.cap= "**Abb. 6** *Studienbereiche mit den stärksten Änderungen des Frauenanteils bei Studierenden 1998 - 2017. Gestrichelte Linie: Änderung des Frauenanteils aller Studierenden.*"}
 ggplotly(ext_stud, width = 700, height = 700)
@@ -126,7 +114,7 @@ ggplotly(ext_stud, width = 700, height = 700)
 ggplotly(ratio, width = 700, height = 1050) 
 ```
 
-## Abschluss
+## Fazit
  - Insgesamt passieren Änderungen langsam, sind die Unterschiede immer noch groß
  - Die relevanten Gesellschaftlichen Änderungen die zu Änderungen des Frauenanteils unter der Studierendenschaft beigetragen haben sind vor 1998 passiert - und eher in Studiengängen außerhalb des STEM-Bereiches
  - Dr. August hält Maßnahmen für sinnvoll, die bei Kindern und ihren LehrerInnen ansetzen. 
