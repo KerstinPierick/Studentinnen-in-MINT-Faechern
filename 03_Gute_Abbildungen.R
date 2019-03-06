@@ -281,7 +281,7 @@ ggplotly(ext_stud, width = 700, height = 700) %>%
 ratio_fg <- anteile_fg %>%
   select(-m, -w) %>%
   spread(studi_typ, Frauenanteil) %>%
-  mutate(`Rel. Frauenanteil AnfängerInnen zu Studis` = anfaenger / studis)
+  mutate(`Rel. Frauenanteil AnfängerInnen zu Studis` = round((anfaenger / studis), digits = 3))
 
 
 # Erstellen von ggplot2-Objekt
@@ -294,7 +294,8 @@ ratio <-
          fg_name = fct_reorder(fg_name, Frauenanteil, mean, na.rm  = T)) %>%
   select(-m, -w) %>%
   spread(studi_typ, Frauenanteil) %>%
-  mutate(`Rel. Frauenanteil AnfängerInnen zu Studis` = anfaenger / studis) %>%
+  mutate(`Rel. Frauenanteil AnfängerInnen zu Studis` = round((anfaenger / studis), 
+                                                             digits = 3)) %>%
   ggplot(aes(x = Jahr)) +
   geom_line(aes(y = `Rel. Frauenanteil AnfängerInnen zu Studis`, group = Studienbereich), color = "steelblue", alpha = 0.7) +
   geom_line(data = ratio_fg, aes(y = `Rel. Frauenanteil AnfängerInnen zu Studis`), lwd = 1.15) + 

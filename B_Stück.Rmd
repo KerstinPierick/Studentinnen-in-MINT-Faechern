@@ -71,11 +71,11 @@ STUDIERENDE
  - "Das fängt schon früh an: Schon im Kindergartenalter prägen geschlechtertypische Rollenklischees die Interessen. Später in der Schule werden Mädchen laut einer Studie in den MINT-Fächern bei gleicher Leistung um bis zu 0.9 Notenpunkte schlechter benotet als Jungen." Außerdem fehlen, so Dr. August, konkrete Berufsbilder. "Auch später, während ihrer wissenschaftlichen Karriere, müssen Frauen in männerdominierten Domänen oft stärker um Anerkennung und Respekt ringen als ihre männlichen Kollegen."
  
 
-```{r ext_anf, fig.cap= "Studienbereiche mit den stärksten Änderungen des Frauenanteils bei StudienanfängerInnen 1998 - 2017"}
+```{r ext_anf, fig.cap= "Studienbereiche mit den stärksten Änderungen des Frauenanteils bei StudienanfängerInnen 1998 - 2017. Gestrichelte Linie: Änderung des Frauenanteils aller Studierenden."}
 ggplotly(ext_anf, width = 700, height = 700)
 ```
 
-```{r ext_stud, fig.cap= "Studienbereiche mit den stärksten Änderungen des Frauenanteils bei Studierenden 1998 - 2017"}
+```{r ext_stud, fig.cap= "Studienbereiche mit den stärksten Änderungen des Frauenanteils bei Studierenden 1998 - 2017. Gestrichelte Linie: Änderung des Frauenanteils aller Studierenden."}
 ggplotly(ext_stud, width = 700, height = 700)
 ```
 
@@ -107,6 +107,7 @@ BESCHREIBUNG & INTERPRETATION RATIO
 
 
 ABSCHLUSS
+
  - Insgesamt passieren Änderungen langsam, sind die Unterschiede immer noch groß
  - Dr. August hält Maßnahmen für sinnvoll, die bei Kindern und ihren LehrerInnen ansetzen. 
  - "Wir machen viel Öffentlichkeitsarbeit mit dem Ziel, Kinder und insbesondere auch Mädchen für Physik zu begeistern."
