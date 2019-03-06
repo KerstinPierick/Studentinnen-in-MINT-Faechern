@@ -10,8 +10,8 @@
 # Define themes for plotting --------------------------------------------------    
 
 # updated overall theme
-theme_screen <- function(base_size = 10, base_family = "Helvetica") { # helvetica can cause troubles, but it is nice
-  ggthemes::theme_foundation(base_size = base_size, base_family = base_family) +
+theme_screen <- function(base_size = 10) { # helvetica can cause troubles, but it is nice
+  ggthemes::theme_foundation(base_size = base_size) +
     theme(axis.title = element_text(face = "bold", 
                                     size = rel(1.2)), 
           axis.title.y = element_text(angle = 90, 
