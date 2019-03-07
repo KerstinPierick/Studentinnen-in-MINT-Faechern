@@ -103,6 +103,20 @@ Interessant ist, dass es bei allen bis auf 7 Studiengängen (blau in Abb. 6) üb
 ggplotly(ext_stud, width = 700, height = 700)
 ```
 
+## Sind Männerdomänen stärkeren Änderungen unterworfen?
+Da die Entwicklung innerhalb der Fächergruppen sehr heterogen ist und die Gruppen die unterschiedlichen Studienbereiche nicht gut widerspiegeln, ist die Frage interessant, ob es konsistente Trends bei Fächern gibt, die zu Beginn der untersuchten Zeitreihe in 1998 männerdominiert, frauendominiert oder in etwa gleich besetzt waren.
+Es ist interessant, dass - auch wenn die Zunahme bei den Männerdomänen am größten ist - alle drei Gruppen im untersuchten Intervall im Mittel an Frauen dazugewinnen, selbst die Studienbereiche, die auch 1998 schon von überdurchschnittlich vielen Frauen studiert wurden.
+
+```{r rel_klass_stud, fig.cap= "**Abb. 7** *Änderungen des Frauenanteils unter der Studierenden bei Fächern, die 1998 frauendominiert, in etwa gleich besetzt und männerdominiert waren.*"}
+ggplotly(rel_klass_stud, width = 700, height = 400)
+```
+
+Es ist offensichtlich, dass dieses Muster nur dadurch zu erklären ist, dass es in allen drei Sektoren insgesamt eine Zunahme der Studierendenzahlen gab, die insbesondere von einem Zuwachs an Frauen getrieben wurde.  Bei gleichbleibenden Studierendenzahlen muss eine Zunahme des Frauenanteile in einem Fachbereich zwangsläufig mit einer Zunahme des Männeranteils in einem anderen Bereich einhergehen. 
+
+```{r abs_klass_stud, fig.cap= "**Abb. 8** *Änderungen der Studierendenzahlen bei Fächern, die 1998 frauendominiert, in etwa gleich besetzt und männerdominiert waren.*"}
+ggplotly(abs_klass_stud, width = 700, height = 500)
+```
+<!-- entschuldige des Format - plotly hat mir hier ein paar extreme Bugs präsentiert (siehe Skript 3) -->
 
 ## Verhältnis der Frauenanteile bei StudienanfängerInnen und Studierenden
 Um die Unterschiede in der zeitlichen Entwicklung des Frauenanteils unter den StudienanfängerInnen und Studierenden zu verstehen, ist eine Betrachtung des Verhältnisses der beiden Anteile interessant: Liegt dieses Verhältnis über 1, gibt es unter den AnfängerInnen einen höheren Frauenanteil als unter der Gesamtzahl der Studierenden; liegt das Verhältnis unter 1, haben die AnfängerInnen einen geringeren Frauenanteil. Der vorliegende Datensatz legt nahe, dass der Frauenanteil im Mittel bei allen Fächergruppen unter den AnfängerInnen größer war als unter den Studierenden.
@@ -115,7 +129,7 @@ Ein interessantes Detail in den Daten ist das Stagnieren des Frauenanteils bei d
 
 <!-- würde ich weglassen, außer wir finden eine gute Quelle dafür -->
  
-```{r ratio, fig.cap= "**Abb. 7** *Verhältnis der Frauenanteile bei StudienanfängerInnen zu den Frauenanteilen bei Studierenden. Werte größer als 1 bedeuten, dass es bei den AnfängerInnen mehr Frauen gab als bei den Studierenden.*"}
+```{r ratio, fig.cap= "**Abb. 9** *Verhältnis der Frauenanteile bei StudienanfängerInnen zu den Frauenanteilen bei Studierenden. Werte größer als 1 bedeuten, dass es bei den AnfängerInnen mehr Frauen gab als bei den Studierenden.*"}
 ggplotly(ratio, width = 700, height = 1050) 
 ```
 
@@ -125,4 +139,4 @@ Viele der für die Änderungen des Frauenanteils unter den Studierenden relevant
 
 Um auf ein langfristiges Angleichen des Geschlechterverhältnisses hinzuwirken, hält Dr. August vom Gleichstellungsbüro der Physik-Fakultät in Göttingen Maßnahmen für sinnvoll, die bei Kindern und ihren LehrerInnen ansetzen. Ihr Fokus liegt dabei auf Öffentlichkeitsarbeit, die zum Ziel hat, Kinder und insbesondere auch Mädchen für Physik zu begeistern. Außerdem würde sie sich wünschen, dass angehende LehrerInnen in ihrer Ausbildung mehr für das Thema sensibilisiert werden.
 
-Interessanterweise geht aus den uns vorliegenden Daten hervor, dass es der Frauenanteil in den am stärksten männerdominierten Studienbereichen in den letzten Jahrzehnten merklich zugenommen hat, während das umgekehrte Phänomen - ein Angleichen des Männeranteils in frauendominierten Fächern - die absolute Ausnahme darstellt. Um Geschlechterunterschiede in der Studienfachwahl und daraus resultierende Probleme wie geschlechterspezifische Unterschiede im Durchschnittseinkommen wirksam zu bekämpfen, sollte zweckdienliche Öffentlichkeitsarbeit daher auch die Erhöhung des Männeranteils in diesen Fächern zum Ziel haben.
+Interessanterweise geht aus den uns vorliegenden Daten hervor, dass der Frauenanteil in den am stärksten männerdominierten Studienbereichen in den letzten Jahrzehnten merklich zugenommen hat, während das umgekehrte Phänomen - ein Angleichen des Männeranteils in frauendominierten Fächern - die absolute Ausnahme darstellt. Diese Entwicklung ist allein getrieben durch die Zunahme der Studierendenzahlen (insbesondere durch die überproportional große Zahl weiblicher Studienanfängerinnen) und daher auf die Dauer nicht nachhaltig. Bei gleichbleibenden Studierendenzahlen wird die Frage der Geschlechterverhältnisse zu einem Nullsummenspiel - mehr Frauen in einem Bereich sind nicht möglich ohne mehr Männer in einem anderen Bereich. Da die Studierendenzahlen nicht ewig ansteigen können, sollte zweckdienliche Öffentlichkeitsarbeit daher auch die Erhöhung des Männeranteils in diesen Fächern zum Ziel haben, damit Geschlechterunterschiede in der Studienfachwahl und daraus resultierende Probleme wie geschlechterspezifische Unterschiede im Durchschnittseinkommen wirksam bekämpft werden können.
