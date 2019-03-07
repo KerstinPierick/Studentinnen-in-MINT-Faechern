@@ -1,8 +1,8 @@
 ---
-title: "Geschlecht und Studium"
+title: "Von Ingenieuren und Romanistikerinnen"
 subtitle: "Die Entwicklung des Frauenanteils unter den Studierenden von 1998 bis 2017"
 author: "Roman Link und Kerstin Pierick"
-date: "February 26, 2019"
+date: "März 2019"
 output:
   html_document:
     toc: true
@@ -17,17 +17,15 @@ source("03_Gute_Abbildungen.R")
 ```
 
 <!-- EIN BESSERER TITEL IST SEHR WILLKOMMEN --> 
-### *Allen antidiskriminatorischen zum Trotz gibt es auch im 21. Jahrhundert an deutschen Universitäten noch typische Männer- und Frauenfächer. Wieso eigentlich?*
+<!-- Taugt? (s.o.) -->
 
-<!--*VIELLEICHT EIN KURZER CATCHY TEXT (MINI-ABSTRACT FÜR ZEITUNGSARTIKEL IN ZWEI SÄTZEN)* -->
-<!-- nennen Journalisten übrigens Anreißer ^^-->
-<!-- Du wusstest, was ich meine ;-) -->
-<!-- Natürlich. Aber ich finde das Wort lustig... -->
+### *Allen antidiskriminatorischen Bemühungen zum Trotz gibt es auch im 21. Jahrhundert an deutschen Universitäten noch typische Männer- und Frauenfächer. Wir zeigen, wie sich die Geschlechterverhältnisse in den Hörsälen geändert haben.*
 
-## Männerfächer und Frauenfächer 
-<!-- crappy, aber mir fällt nichts besseres ein -->
-Eigentlich stehen Frauen in Deutschland heute alle Türen offen. Die feministische Bewegung mit ihren vielfältigen Unterströmungen hat seit ihren Anfängen im vorletzten Jahrhundert zahlreiche Rechte für Frauen erkämpft, die lange undenkbar waren. Dennoch halten sich manche Klischees hartnäckig: Technik und Naturwissenschaften seien "was für Männer", soziale, künstlerische und kommunikative Aufgaben hingegen "Frauensache". Das spiegelt sich immer noch in der Berufswahl junger Menschen wider. Die Folgen sind gravierend: Da "typische Männerberufe", vor allem technische, oft besser bezahlt sind als "typische Frauenberufe", tragen Stereotype in der Berufswahl erheblich zum unbereinigten [Gender Pay Gap](https://de.wikipedia.org/wiki/Gender_Pay_Gap) bei. <!-- mehr erklären | habe es umgeschrieben, da es wirkte wie eine Kausalitätsumkehr --> 
-Wissenschaftliche Untersuchungen legen nahe, dass der Männerüberschuss in Studienfächern im sogenannten [MINT](https://de.wikipedia.org/wiki/MINT-F%C3%A4cher)-Bereich (d.h. Mathematik, Informatik Naturwissenschaft und Technik) nicht durch bessere schulische Leistungen männlicher Schüler in naturwissenschaftlichen Fächern zu begründen ist. [Tatsächlich sind dort die Leistungen der Mädchen im Mittel besser, und auch die Theorie der "männlichen Überflieger" ist nicht imstande, den Männerüberschuss in MINT-Studiengängen zu erklären ](https://www.nature.com/articles/s41467-018-06292-0).
+<!-- Habe das Wieso eigentlich? ausgetauscht - war zwar catchy, aber eigentlich werden die Gründe in unserem Artikel nur spärlich behandelt (eigentlich überhaupt nur, weil wir ein dummes Interview einbauen mussten) -->
+
+## MINT ist immer noch Männersache
+<!-- auch nicht supertoll, aber immerhin mit Alliteration ;-) -->
+Eigentlich stehen Frauen in Deutschland heute alle Türen offen. Die feministische Bewegung mit ihren vielfältigen Unterströmungen hat seit ihren Anfängen im vorletzten Jahrhundert zahlreiche Rechte für Frauen erkämpft, die lange undenkbar waren. Dennoch halten sich manche Klischees hartnäckig: Technik und Naturwissenschaften seien "was für Männer", soziale, künstlerische und kommunikative Aufgaben hingegen "Frauensache". Das spiegelt sich immer noch in der Berufswahl junger Menschen wider. Die Folgen sind gravierend: Da "typische Männerberufe", vor allem technische, oft besser bezahlt sind als "typische Frauenberufe", tragen Stereotype in der Berufswahl erheblich zum unbereinigten [Gender Pay Gap](https://de.wikipedia.org/wiki/Gender_Pay_Gap) bei. Wissenschaftliche Untersuchungen legen nahe, dass der Männerüberschuss in Studienfächern im sogenannten [MINT](https://de.wikipedia.org/wiki/MINT-F%C3%A4cher)-Bereich (d.h. Mathematik, Informatik Naturwissenschaft und Technik) nicht durch bessere schulische Leistungen männlicher Schüler in naturwissenschaftlichen Fächern zu begründen ist. [Tatsächlich sind dort die Leistungen der Mädchen im Mittel besser, und auch die Theorie der "männlichen Überflieger" ist nicht imstande, den Männerüberschuss in MINT-Studiengängen zu erklären ](https://www.nature.com/articles/s41467-018-06292-0).
 
 "Statistisch belegbar sind die enormen Bildungsanstrengungen, die den Mädchen und Frauen in den vergangenen Jahrzehnten gelungen sind. Sie erwerben höhere Schulabschlüsse, ihr Ausbildungsstand ist hervorragend, der Anteil von Hochschulabsolventinnen ist signifikant gestiegen, Frauen promovieren, es gibt mehr weibliche Vorbilder und Role Models" schreibt das Bundesministerium für Bildung und Forschung auf seiner [Website zum Thema Chancengerechtigkeit und Vielfalt im Wissenschaftssystem](https://www.bmbf.de/de/mint-pakt-und-girls-day-214.html). Weiterhin heißt es dort: "Sie haben hervorragende Qualifikationen, oftmals bessere Schulnoten als ihre männlichen Altersgenossen und viele von ihnen bringen ein Interesse an Technik mit: Junge Frauen sind heute so gut ausgebildet wie nie zuvor und trotzdem ergreifen immer noch vergleichsweise wenige von ihnen ein MINT-Studium."
 
@@ -37,17 +35,16 @@ Um zu untersuchen, ob sich diese Fördermaßnahmen in den Studierendenzahlen wid
 
 ## Änderungen der Studierenden in verschiedenen Fachbereichen in absoluten Zahlen
 ### StudienanfängerInnen
-Betrachtet man die -absoluten Zahlen der StudienanfängerInnen von 1998 bis 2017, so fällt auf, dass über den Beobachtungszeitraum von 1998 bis 2017 in allen Fächergruppen bei beiden Geschlechtern eine deutliche Zunahme zu verzeichnen ist. Dabei fallen einige fachspezifische Trends auf: Bei Ingenieurwissenschaften und Sport gab es damals wie heute einen Männerüberschuss, bei Mathematik und Naturwissenschaften war es annähernd ausgewogen, in allen anderen Fachgruppen gab es über den gesamten Zeitraum mehr Frauen. 
+Betrachtet man die absoluten Zahlen der StudienanfängerInnen von 1998 bis 2017, so fällt auf, dass über den Beobachtungszeitraum von 1998 bis 2017 in allen Fächergruppen bei beiden Geschlechtern eine deutliche Zunahme zu verzeichnen ist. Dabei fallen einige fachspezifische Trends auf: Bei Ingenieurwissenschaften und Sport gab es damals wie heute einen Männerüberschuss, bei Mathematik und Naturwissenschaften war es annähernd ausgewogen, in allen anderen Fachgruppen gab es über den gesamten Zeitraum mehr Frauen. 
 
-Insgesamt stieg die Anzahl  in dem beobachteten Zeitraum von um 89.8%, dieser Anstieg war bei den Frauen mit 97.9% deutlich höher als bei den Männern, deren Zahl im selben Zeitraum nur um 82.1% zunahm. Dies resultierte darin, dass es im Jahr 2017 gab es mit 50.6% unter den StudienanfängerInnen einen leichten Frauenüberschuss gab, während Frauen 1998 mit 48.6% noch knapp in der Unterzahl waren.
-<!--Dabei scheinen sich die Geschlechterverhältnisse so gut wie nicht zu verändern. | das würde ich auslassen, wird bei den relativen Daten im Detail besprochen und ist hier schwer zu erkennen-->
+Insgesamt stieg die Anzahl in dem beobachteten Zeitraum um 89.8%, dieser Anstieg war bei den Frauen mit 97.9% deutlich höher als bei den Männern, deren Zahl im selben Zeitraum nur um 82.1% zunahm. Dies resultierte darin, dass es im Jahr 2017 mit 50.6% unter den StudienanfängerInnen einen leichten Frauenüberschuss gab, während Frauen 1998 mit 48.6% noch knapp in der Unterzahl waren.
 
 ```{r abs_anf, fig.cap= "**Abb. 1** *StudienanfängerInnen in Deutschland seit 1998 nach Geschlecht und Fächergruppe*"}
 ggplotly(abs_anf, width = 700, height = 1050)
 ```
 
 ### Studierende
-Die bei den StudienanfängerInnen zu beobachtenden Muster spiegeln sich bei den Studierenden im wesentlichen wieder, auch wenn in einigen Fachbereichen deutlicher als bei den Studierenden eine Zunahme des Frauenanteils zu erkennen ist.
+Die bei den StudienanfängerInnen zu beobachtenden Muster spiegeln sich bei den Studierenden im Wesentlichen wieder, auch wenn in einigen Fachbereichen deutlicher als bei den StudienanfängerInnen eine Zunahme des Frauenanteils zu erkennen ist.
 
 Die stetige Zunahme der StudienanfängerInnen spiegelt sich in einer deutlichen Zunahme der Gesamtzahl an Studierenden wieder, die im beobachteten Zeitraum um insgesamt 58% steigt und 2017 bei über 2.84 Millionen liegt. Auch hier ist insgesamt eine stärkere Zunahme bei den Frauen zu verzeichnen, deren Anzahl sich um 72.5% erhöhte, während die Anzahl männlicher Studierender im selben Zeitraum nur um 46.5% anstieg. Im Jahr 2017 besteht mit 1.46 Mio. männlichen und 1.38 Mio. weiblichen Studierenden eine annähernde Parität zwischen den Geschlechtern.
 
@@ -70,7 +67,7 @@ ggplotly(p_anfg, width = 700, height = 1050)
 ### Studierende
 Bei den Studierenden sind die Unterschiede zwischen den Fächergruppen und Studienbereichen sehr ähnlich wie bei den AnfängerInnen - insgesamt zeichnen sich die selben Fächer durch jeweils hohe oder niedrige Frauenanteile und ähnliche Änderungstendenzen aus. Im Gegensatz zu den StudienanfängerInnen sieht man hier jedoch bei vielen Fächergruppen deutlichere Aufwärtstrends. Sichtbare Zunahmen gab es bei Medizinern, die ausgehend von einem relativ ausgeglichenen Geschlechterverhältnis in den letzten beiden Jahrzehnten zu einer regelrechten Frauendomäne evolvierten, sowie bei Ingenieurwissenschaften und Rechts-, Wirtschafts- und Sozialwissenschaften. In den Disziplinen Mathematik/Naturwissenschaften, Geisteswissenschaften und Agrar-/Forst-/Ernährungswissenschaften/Veterinärmedizin stagnierte das Geschlechterverhältnis der Studierenden. Eine fächergruppenübergreifende Abnahme des Frauenanteils war nur bei den Sport-Studierenden zu verzeichnen. Diese Tendenzen decken sich überwiegend mit den Veränderungen der StudienanfängerInnen, die einzige Ausnahme bildet hier Sport - dort sank der Frauenanteil der Studierenden trotz des konstant bleibenden Frauenanteils der StudienanfängerInnen. 
 
-Es ist augenfällig, dass es über den beobachteten Zeitraum in vielen männerdominierten Disziplinen sowohl bei AnfängerInnen als auch bei Studierenden zu einer Zunahme des Frauenanteils kam, während das umgekehrte Phänomen - die Zunahme des Frauenanteils eines bereits frauendominierten Fachs - die absolute Ausnahme darstellte. Stattdessen kam es zum Teil sogar noch zu einer Zunahme des Frauenanteils bereits frauendominierter Fächer. 
+Es ist augenfällig, dass es über den beobachteten Zeitraum in vielen männerdominierten Disziplinen sowohl bei AnfängerInnen als auch bei Studierenden zu einer Zunahme des Frauenanteils kam, während das umgekehrte Phänomen - die Zunahme des Männeranteils eines bereits frauendominierten Fachs - die absolute Ausnahme darstellte. Stattdessen kam es zum Teil sogar noch zu einer Zunahme des Frauenanteils bereits frauendominierter Fächer. 
 
 ```{r rel_stud, fig.cap="**Abb. 4** *Frauenanteil in Prozent bei Studierenden in Deutschland seit 1998. Blau: Frauenanteile der einzelnen Studienbereiche (Namen können durch Überstreichen mit dem Cursor abgerufen werden). Schwarz: Durchschnittliche Frauenanteile der Fächergruppen.*"}
 ggplotly(p_studi, width = 700, height = 1050)
@@ -79,7 +76,11 @@ ggplotly(p_studi, width = 700, height = 1050)
 <!-- Mein Vorschlag wäre, diese Aussagen an verschiedenen passenden Stellen im Text einfließen zu lassen, anstatt sie in eine gesonderte Sektion zu schieben. Dafür gibt das Interview a) nicht genug her und b) lässt es den Text kompetenter erscheinen, wenn an wichtigen Stellen so etwas steht wie "Nach Aussage von Dr. SC August" oder "Dr. August bestätigt" oder so -->
 <!-- Sehe ich auch so, nur war das an dieser Stelle eine lange zusammenhängende Antwort auf eine Frage -->
 
-Dr. Sophie-Charlotte August vom Gleichstellungsbüro der Fakultät für Physik an der Georg-August-Universität Göttingen erklärt den niedrigen Frauenanteil in den MINT-Studienfächern folgendermaßen: "Das fängt schon früh an: Schon im Kindergartenalter prägen geschlechtertypische Rollenklischees die Interessen. Später in der Schule werden Mädchen laut einer Studie in den MINT-Fächern bei gleicher Leistung um bis zu 0.9 Notenpunkte schlechter benotet als Jungen." <!-- Das ist leider falsch. Tatsächlich haben die Mädchen im Durchschnitt bessere Noten als die Jungs. Und selbst der Versuch einer biologistische Erklärung über eine größere Varianz der Noten bei den Männern ist nicht mit den Daten vereinbar: https://www.nature.com/articles/s41467-018-06292-0 -- das weniger Mädels MINT studieren, scheint ihre eigene Entscheidung zu sein... -->Außerdem fehlen, so  August, konkrete Berufsbilder. "Auch später, während ihrer wissenschaftlichen Karriere, müssen Frauen in männerdominierten Domänen oft stärker um Anerkennung und Respekt ringen als ihre männlichen Kollegen."
+Dr. Sophie-Charlotte August vom Gleichstellungsbüro der Fakultät für Physik an der Georg-August-Universität Göttingen erklärt den niedrigen Frauenanteil in den MINT-Studienfächern folgendermaßen: "Das fängt schon früh an: Schon im Kindergartenalter prägen geschlechtertypische Rollenklischees die Interessen. Später in der Schule werden Mädchen laut einer Studie in den MINT-Fächern bei gleicher Leistung um bis zu 0.9 Notenpunkte schlechter benotet als Jungen." <!-- Das ist leider falsch. Tatsächlich haben die Mädchen im Durchschnitt bessere Noten als die Jungs. Und selbst der Versuch einer biologistische Erklärung über eine größere Varianz der Noten bei den Männern ist nicht mit den Daten vereinbar: https://www.nature.com/articles/s41467-018-06292-0 -- das weniger Mädels MINT studieren, scheint ihre eigene Entscheidung zu sein... -->
+
+<!-- Gute Idee erstmal, den Nature-Artikel reinzubringen, den hatten wir ja schon mal gelesen und drüber diskutiert. Frau August hat tatsächlich genau die Zahl genannt, ich werde sie noch mal nach der entsprechenden Studie fragen. Der Datensatz aus dem Nature-Paper ist weltweit mit nordamerikanischem Schwerpunkt, ich kann mir vorstellen, dass das nicht unbedingt auf Deutschland anwendbar ist. Vielleicht sind die Noten aus dem Nature-Artikel ja standardisierte Tests und die Zahl von Frau August Zeugniszensuren (also Klausuren + mündliche Mitarbeit)? So oder so, ich habe mich eh schon gefragt, wie dieses Ergebnis zustande gekommen sein soll, vor allem das "bei gleicher Leistung" hat mich von vornherein stutzig gemacht. Werde dem nachgehen. -->
+
+Außerdem fehlen, so  August, konkrete Berufsbilder. "Auch später, während ihrer wissenschaftlichen Karriere, müssen Frauen in männerdominierten Domänen oft stärker um Anerkennung und Respekt ringen als ihre männlichen Kollegen."
  
  
 ## In welchen Studienfächern haben sich die Frauenanteile von 1998 bis 2017 am stärksten geändert?
@@ -108,9 +109,11 @@ Um die Unterschiede in der zeitlichen Entwicklung des Frauenanteils unter den St
 
 Sofern es keine geschlechterspezifischen Unterschiede in den Studiendauern und Abbrecherquoten gibt, folgt aus einem höheren Frauenanteil bei den StudienanfängerInnen automatisch eine zeitliche verzögerte Zunahme des Frauenanteils bei den Studierenden, selbst wenn der Frauenanteil bei den AnfängerInnen nicht mehr ansteigt. Diese Zunahme hält so lange an, bis sich die Frauenanteile unter AnfängerInnen und Studierenden angeglichen haben. 
 In dem untersuchten Datensatz ist eine Abnahme des Verhältnisses insbesondere Ende der neunziger/Anfang der nuller Jahre zu beobachten. 
-Die Änderung des Verhältnisses der Frauenanteile zusammen mit der weitgehenden Konstanz der Frauenanteile bei den StudienanfängerInnen in vielen Fächergruppen deutet darauf hin, dass die gesellschaftlichen Änderungen, die die Zunahme des Frauenanteils unter den Studierenden bewirkt haben, zu einem großen Anteil bereits vor Beginn des beobachteten Zeitraums in Gang gesetzt wurden und durch sogenannte Kohorteneffekte erst verzögert in den Studierendenzahlen niederschlagen. 
+Die Änderung des Verhältnisses der Frauenanteile zusammen mit der weitgehenden Konstanz der Frauenanteile bei den StudienanfängerInnen in vielen Fächergruppen deutet darauf hin, dass die gesellschaftlichen Änderungen, die die Zunahme des Frauenanteils unter den Studierenden bewirkt haben, zu einem großen Anteil bereits vor Beginn des beobachteten Zeitraums in Gang gesetzt wurden und sich durch sogenannte Kohorteneffekte erst verzögert in den Studierendenzahlen niederschlagen. 
 
 Ein interessantes Detail in den Daten ist das Stagnieren des Frauenanteils bei den Sportstudierenden auf niedrigem Niveau trotz des konstant größeren Frauenanteils bei den StudienanfängerInnen. Die einzig möglichen Erklärungen dafür sind a) längere Studiendauer bei männlichen Sportstudenten und b) höhere Abbruchquoten bei Frauen. Beides *könnte* mit einer höheren Prävalenz toxischer Männerbilder unter Sportlern zusammenhängen. <!-- oder damit, das viele Frauen so über die Hintertür ins frauendominierte Medizinstudium wollen? Weiß nicht, ob wir das reinnehmen sollen....-->
+
+<!-- würde ich weglassen, außer wir finden eine gute Quelle dafür -->
  
 ```{r ratio, fig.cap= "**Abb. 7** *Verhältnis der Frauenanteile bei StudienanfängerInnen zu den Frauenanteilen bei Studierenden. Werte größer als 1 bedeuten, dass es bei den AnfängerInnen mehr Frauen gab als bei den Studierenden.*"}
 ggplotly(ratio, width = 700, height = 1050) 
@@ -118,9 +121,8 @@ ggplotly(ratio, width = 700, height = 1050)
 
 ## Fazit
 Die verfügbaren Daten des statistischen Bundesamtes legen nahe, dass es in den vergangenen Jahrzehnten eine drastische Zunahme der Studierendenzahlen in Deutschland gab. Dabei kam es auch zu einem näherungsweisen Angleichen des Frauenanteils. Dieses Angleichen der weiblichen und männlichen Studierendenzahlen wirkte sich jedoch nicht gleichermaßen auf alle Fächerbereiche aus. Insgesamt gehen die Änderungen der Geschlechterverhältnisse bei den Studierenden sehr langsam vonstatten. Auch wenn sich bei den am stärksten männerdominierten Studiengängen - insbesondere Physik, Forstwirtschaft und Ingenieurswissenschaften - ein leichter Frauenzuwachs verzeichnen lässt, ist der Männerüberschuss in diesen Disziplinen nach wie vor beträchtlich.
-Viele der für die Änderungen des Frauenanteils unter den Studierenden relevanten gesellschaftlichen Änderungen dürften lange vor Beginn des untersuchten Zeitraums begonnen haben und sich ebenso stark oder stärker in den Fächern auswirken, die nicht dem MINT-Sektor zugeordnet werden.
+Viele der für die Änderungen des Frauenanteils unter den Studierenden relevanten gesellschaftlichen Prozesse dürften lange vor Beginn des untersuchten Zeitraums begonnen haben und sich mindestens ebenso stark in den Fächern auswirken, die nicht dem MINT-Sektor zugeordnet werden.
 
-Um auf ein langfristiges Angleichen des Geschlechterverhältnisses hinzuwirken, hält Dr. August Maßnahmen für sinnvoll, die bei Kindern und ihren LehrerInnen ansetzen. Ihr Fokus liegt dabei auf Öffentlichkeitsarbeit, die zum Ziel hat, Kinder und insbesondere auch Mädchen für Physik zu begeistern. <!-- "Wir machen viel Öffentlichkeitsarbeit mit dem Ziel, Kinder und insbesondere auch Mädchen für Physik zu begeistern."-->
-Außerdem würde sie sich wünschen, dass LehrerInnen in ihrer Ausbildung mehr für das Thema sensibilisiert werden.
+Um auf ein langfristiges Angleichen des Geschlechterverhältnisses hinzuwirken, hält Dr. August vom Gleichstellungsbüro der Physik-Fakultät in Göttingen Maßnahmen für sinnvoll, die bei Kindern und ihren LehrerInnen ansetzen. Ihr Fokus liegt dabei auf Öffentlichkeitsarbeit, die zum Ziel hat, Kinder und insbesondere auch Mädchen für Physik zu begeistern. Außerdem würde sie sich wünschen, dass angehende LehrerInnen in ihrer Ausbildung mehr für das Thema sensibilisiert werden.
 
 Interessanterweise geht aus den uns vorliegenden Daten hervor, dass es der Frauenanteil in den am stärksten männerdominierten Studienbereichen in den letzten Jahrzehnten merklich zugenommen hat, während das umgekehrte Phänomen - ein Angleichen des Männeranteils in frauendominierten Fächern - die absolute Ausnahme darstellt. Um Geschlechterunterschiede in der Studienfachwahl und daraus resultierende Probleme wie geschlechterspezifische Unterschiede im Durchschnittseinkommen wirksam zu bekämpfen, sollte zweckdienliche Öffentlichkeitsarbeit daher auch die Erhöhung des Männeranteils in diesen Fächern zum Ziel haben.
