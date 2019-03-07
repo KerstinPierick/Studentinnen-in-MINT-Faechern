@@ -1,30 +1,45 @@
 ---
 title: "Rechercheprotokoll"
 author: "Roman Link und Kerstin Pierick"
-date: "February 26, 2019"
-output: html_document
+date: "März 2019"
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## "Von Ingenieuren und Romanistikerinnen - Die Entwicklung des Frauenanteils unter den Studierenden von 1998 bis 2017"
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Motivation: Klassischerweise waren Frauen in mathematisch/naturwissenschaftlichen und technischen Studienfächern unterrepräsentiert. Uns hat interessiert, inwiefern sich das in den letzten 20 Jahren geändert hat.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Die Daten
 
-```{r cars}
-summary(cars)
-```
+Sobald unser Thema feststand, haben wir uns als Erstes die Daten mit den Zahlen der Studierenden und StudienanfängerInnen vom Statistischen Bundesamt Deutschland beschafft, was nach einer Registrierung als User möglich war. Die Datensätze enthalten die Studierenden bzw. StudienanfängerInnen an allen Hochschulen Deutschlands in jährlichen Zeitintervallen von 1998 bis 2017. Aufgeschlüsselt sind die Daten nach Studiengängen, Geschlecht, Nationalität der Studierenden (In-/Ausland) und Bundesland der Hochschulen.
 
-## Including Plots
+Weil wir die Vielzahl an Studiengängen in Gruppen sortieren wollten, haben wir zusätzlich die pdf-Datei "Studierende an Hochschulen - Fächersystematik" vom Statistischen Bundesamt heruntergeladen, in dem die Studienfächer zu Studienbereichen (z.B. Biologie) und Fächergruppen (z.B. Mathematik/Naturwissenschaften) zusammengefasst werden
 
-You can also embed plots, for example:
+## Datenumformung
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+Die Daten waren in ihrer Rohform nicht in dem erforderlichen Zustand. Folgende Schritte waren unter anderem nötig:
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+ - Herausfiltern der benötigten Informationen: Nationalität und Bundesland nicht benötigt
+ - Festlegen des Encoding: Korrektes Einlesen von Umlauten, leere Felder = 0 
+ - Zusammenfügen von StudienanfängerInnen, Studierenden und Fächersystematik
+ - Berechnen neuer Variablen (Frauenanteil)
+ - Zusammenfassen nach Gruppen
+
+## Technische Umsetzung
+
+Wir haben die Daten in R zusammengefügt und bearbeitet. Die Abbildungen wurden innerhalb von R zunächst mit dem Paket ggplot2 erstellt und dann mit dem Paket ggplotly in interaktive html-Widgets umgewandelt. Unser journalistisches Stück, dieses Recherche-Protokoll und unsere Präsentation wurden alle mit R Markdown erstellt. Bei der Arbeit zu zweit an einem Projekt hat uns GitHub, ein Filehosting-Dienst basierend auf dem Versionsverwaltungssystem Git, enorm geholfen. Die Versionen der Dateien auf dem eigenen System lassen sich so leicht mit den Änderungen der anderen Person synchronisieren. Außerdem konnten wir über GitHub Pages eine eigene statische Website für unser journalstisches Stück erstellen. 
+
+
+## Interview mit Expertin
+
+Wir haben nacheinander Prof. Petra Lucht und Dr. Martina Erlemann, beide Gender-Wissenschaftlerinnen mit Forschungsschwerpunkt Frauen in MINT-Fächern, und Anna Lena Martins, Gleichstellungsbeauftragte Mathematik an der Uni Göttingen um ein Interview gebeten von von allen eine Absage aus Zeitmangel erhalten. Letztendlich erfolgreich waren wir bei Dr. Sophie-Charlotte August, Gleichstellungsbeauftragte Physik an der Uni Göttingen. Das Interview fand telefonisch statt.
+ 
+## Internetrecherche
+
+Da das Interview relativ kurz war und nicht ausreichte, um unsere Ergebnisse adäquat gesellschaftlich einzuordnen, haben wir im Internet nach weiteren Quellen zu dem Thema recherchiert und sind auf einige interessante Artikel, Studien und Projekte gestoßen, die wir in unseren Text eingebunden auf unserer Website verlinkt haben. Außerdem haben wir einige Links zu Wikipedia-Artikeln eingefügt, um den LeserInnen nicht unbedingt geläufige Konzepte schnell nachschlagen können zu lassen.
+
+
