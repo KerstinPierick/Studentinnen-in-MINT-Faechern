@@ -320,3 +320,85 @@ ggplotly(ratio, width = 700, height = 1050) %>%
 # 1) längere Studiendauer bei Männern
 # 2) höhere Abbrecherquoten bei Frauen
 
+# 06 Frauenanteile nach Frauenhäufigkeit in 1998 ----------------------------------------
+# vorbereitung für klassifikation der Frauenanteile
+klassifikation <- anteile_sb %>%
+  filter(jahr == 1998, !is.na(Frauenanteil), fg_code != 10) %>%
+  mutate(Klasse = ifelse(Frauenanteil > 60, "> 60% Frauen in 1998", 
+                         ifelse(Frauenanteil >= 40, "40-60% Frauen in 1998", "< 40% Frauen in 1998")),
+         Klasse = factor(Klasse, levels = unique(Klasse)[c(3,2,1)])) %>%
+  select(sb_name, Klasse)
+
+# Vereinigen mit Ausgangsdaten
+anteile_sb_klass <- left_join(anteile_sb, klassifikation)
+
+
+# Aggregieren auf Klassenlevel
+anteile_klass <- dat %>%
+  filter(fg_code != 10) %>%
+  left_join(klassifikation) %>%
+  filter(!is.na(Klasse)) %>% # Studiengänge die 1998 nicht existierten rauswerfen
+  group_by(studi_typ, geschlecht, jahr, Klasse) %>%
+  summarise(anzahl = sum(anzahl, na.rm = T)) %>%
+  ungroup() %>%
+  spread(geschlecht, anzahl) %>%
+  mutate(Frauenanteil = round(100 * w / (w + m), digits = 1)) %>%
+  filter(!is.na(Frauenanteil)) %>%
+  rename(Jahr = jahr) %>%
+  ungroup() 
+
+labs2 <- labs1[2, ]
+labs2$Klasse <- anteile_klass$Klasse[3]
+labs2$y <- 7
+
+
+# a) relative Änderung Studis  ----
+rel_klass_stud <- anteile_sb_klass %>%
+  rename(Jahr = jahr, Studienbereich = sb_name) %>%
+  filter(studi_typ == "studis", !is.na(Klasse)) %>%
+  ungroup() %>%
+  ggplot(aes(x = Jahr)) +
+  geom_line(aes(y = Frauenanteil, group = Studienbereich, col = Klasse), alpha = 0.7) +
+  geom_line(data = filter(anteile_klass, studi_typ == "studis"), aes(y = Frauenanteil), lwd = 1.15) + 
+  geom_text(data = labs2, aes(x = x, y = y, label = label), size = 2.24) +
+  facet_wrap(~Klasse, ncol = 3) +
+  geom_hline(aes(yintercept = 50), lty = 2) +
+  labs(title = "Frauenanteil bei den Studierenden", x = "Jahr", y = "Frauenanteil (%)\n") +
+  theme_screen() +
+  theme(plot.margin = unit(c(3, 3, 3, 10), "mm"),
+        legend.position = "none") 
+
+
+# Konvertieren zu plotly html-Widget
+ggplotly(rel_klass_stud, width = 700, height = 400) %>%
+saveWidget("p_rel_klass_stud.html")
+
+# b) absolute Änderung Studis ----
+absdat1 <- anteile_klass %>%
+  select(-Frauenanteil) %>%
+  gather(geschlecht, anzahl, m, w) %>%
+  mutate(Geschlecht = ifelse(geschlecht == "m", "männlich", "weiblich"))
+
+labs2$y <- 150
+
+
+abs_klass_stud <- absdat1 %>% 
+  filter(studi_typ == "studis") %>%
+  mutate(`Anzahl (in 1000 Studierenden)` = anzahl/1000) %>%
+  ggplot() + 
+  geom_area(aes(x = Jahr, y = `Anzahl (in 1000 Studierenden)` , fill = Geschlecht), alpha = 0.9, col = 1, size = 0.4) +
+  geom_text(data = labs2, aes(x = x, y = y, label = label), size = 2.24) +
+  facet_wrap(~Klasse, scales = "free", ncol =2)  +
+  theme_screen() +
+  labs(title = "Absolute Zahlen Studierende", x = "Jahr", y = "Anzahl (in 1000 Studierenden)\n") +
+  scale_fill_manual(values = c("#FF8400", "#336B22")) +
+  theme(plot.margin = unit(c(3, 3, 3, 10), "mm"),
+        legend.position = "bottom")
+abs_klass_stud
+
+# Export als plotly html-Widget
+ggplotly(abs_stud, width = 700, height = 500) %>%
+  saveWidget("p_abs_klass_stud.html")
+# hier streikt plotly völlig. sowohl nrow als auch legend.position werden ignoriert, und
+# das branding fehlt (bei mir) auch
+
