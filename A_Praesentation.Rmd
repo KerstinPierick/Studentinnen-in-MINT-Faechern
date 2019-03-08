@@ -4,6 +4,15 @@ subtitle: "Die Entwicklung des Frauenanteils unter den Studierenden von 1998 bis
 author: "Roman Link und Kerstin Pierick"
 date: "March 9, 2019"
 output: beamer_presentation
+colortheme: "seahorse"
+header-includes:
+  \mode<presentation>{
+   \usecolortheme{seahorse,rose}
+   \useinnertheme[shadow]{rounded}
+   \useoutertheme[section=false, subsection=false,footline=authortitle]{miniframes}
+   \setbeamercovered{transparent}
+   }
+   \usepackage{graphicx}
 ---
 
 ```{r setup, include=FALSE}
@@ -12,62 +21,97 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Das Thema
 
-Frauenanteil in Studiengängen 1998 bis 2017
+### Frauenanteil in Studiengängen 1998 bis 2017
 
- - "Klassischen Männer- und Frauenfächer" immer noch männlich/weiblich dominiert?
- - Entwicklung des Frauenanteils in der Zeit - unterschiedliche Entwicklungen in den Studiengängen?
-     - Abhängigkeit des zeitlichen Effekts vom Frauenanteil zum Ausgangszeitpunkt?
+ - Sind "Klassische Männer- und Frauenfächer" immer noch männlich/weiblich dominiert?
+ - Zeitliche Entwicklung des Frauenanteils:
+     - Unterschiede zwischen Studiengängen?
+     - Zusammenhang Frauenanteil zum Ausgangszeitpunkt?
  - Sonderstellung der MINT-Fächer?
   
- 
+  
 ## Die Daten
 
-- Quelle: Statistisches Bundesamt Deutschland (www.destatis.de) 
+- Quelle: Statistisches Bundesamt Deutschland (www-genesis.destatis.de) 
+- Struktur: Zahlen der AnfängerInnen und Studierenden für...
+    - ...alle Hochschulen Deutschlands
+    - ...im Zeitraum von 1998 bis 2017
+    - ...aufgeschlüsselt nach 
+        - Studiengängen
+        - Geschlecht
+        - Nationalität (In-/Ausland)
+        - Bundesland der Hochschule
 
-- Struktur: 
-    - Alle Hochschulen Deutschlands
-    - Jahre 1998-2017
-    - Aufgeschlüsselt nach Studiengängen, Geschlecht, Nationalität (In-/Ausland), Bundesland der Hochschule
-    - StudienanfängerInnen und Studierende 
+ - Zusatzdaten: 
+    -"Studierende an Hochschulen - Fächersystematik" (pdf)
 
- - Zusatzdaten: "Studierende an Hochschulen - Fächersystematik" (pdf)
+\vspace{-0.3em}
+\centering{\includegraphics[width = 0.35\textwidth]{figures/destatis}}
 
 
-## Datenumformung
+## Datenaufbereitung
 
  - Herausfiltern der benötigten Informationen: Nationalität und Bundesland nicht benötigt
- - Encoding: Korrektes Einlesen von Umlauten, leere Felder = 0 
+ - Fontencoding: Korrektes Einlesen von Umlauten
+ - Leere Felder (keine Frauen/Männer oder noch nicht eingeführte Studiengänge): 0 Studierende
  - Zusammenfügen von StudienanfängerInnen, Studierenden und Fächersystematik
- - Berechnen neuer Variablen (Frauenanteil)
+ - Berechnen neuer Variablen (Frauenanteil etc.)
  - Zusammenfassen nach Gruppen
 
 
 ## Technische Umsetzung
+\includegraphics[width = 0.15\textwidth]{figures/R_logo.png}
+\includegraphics[width = 0.15\textwidth]{figures/rstudio.png}
+\includegraphics[width = 0.15\textwidth]{figures/tidyverse.png}
+\includegraphics[width = 0.15\textwidth]{figures/ggplot2.jpg}
+\includegraphics[width = 0.15\textwidth]{figures/plotly.png}
+\includegraphics[width = 0.15\textwidth]{figures/rmarkdown.png}
+\includegraphics[width = 0.15\textwidth]{figures/github.png}
 
-  - Einlesen, zusammenfügen und Umwandeln der Daten: R
-  - Abbildungen: ggplot2 (R-Paket)
-  - Interaktive Abbildungen: ggplotly (R-Paket)
-  - HTML-Dokument mit Text und Abbildungen: R Markdown
-  - Präsentation: Latex Beamer in R Markdown
-  - Versionsverwaltung, Backup, Website: GitHub
+  - Komplette Umsetzung des Projektes mit \texttt{R} über \texttt{RStudio}
+  - Einlesen, Zusammenfügen und Umwandeln der Daten: \texttt{tidyverse} (Sammlung von R-Paketen)
+  - Abbildungen: \texttt{ggplot2} (R-Paket)
+  - Interaktive Abbildungen: \texttt{plotly} (R-Paket)
+  - HTML-Dokument mit Text und Abbildungen: \texttt{R Markdown}
+  - Präsentation: \texttt{LaTeX Beamer} in \texttt{R Markdown}
+  - Versionsverwaltung, Backup, Website: \texttt{GitHub}
 
+## Screenshot der Webseite
+
+\hspace*{-2em}\includegraphics[width = \paperwidth]{figures/screenshot.png}
 
 ## Interview mit Expertin
 
-Angefragt: 
+\begin{minipage}{0.8 \textwidth}
+\textbf{Angefragt:}
+\begin{itemize}
+  \item - Prof. Petra Lucht, Gender Studies, TU Berlin
+  \item Dr. Martina Erlemann, Gender Studies/Physik, FU Berlin
+  \item Anna Lena Martins, Gleichstellungsbeauftragte Mathematik, Uni Göttingen
+  \item<2> \textbf{Dr. Sophie-Charlotte August, Gleichstellungsbeauftragte Physik, Uni Göttingen}
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.8 \textwidth}
+\visible<2>{
+\includegraphics{figures/august.jpg}}
+\end{minipage}
 
- - Prof. Petra Lucht, Gender Studies, TU Berlin
- - Dr. Martina Erlemann, Gender Studies/Physik, FU Berlin
- - Anna Lena Martins, Gleichstellungsbeauftragte Mathematik, Uni Göttingen
- - **Dr. Sophie-Charlotte August, Gleichstellungsbeauftragte Physik, Uni Göttingen**
- 
 ## Recherche
 
  - Zeitungsartikel
  - wissenschaftliche Artikel
  - Projekte zur Förderung von Frauen in MINT-Fächern
- - Wikipedia-Artikel
+ - Wikipedia-Artikel (KEINE schlechte Quelle, sondern das intensivste Peer-Review der Welt...)
  
-## Das Stück
+ 
+## Ergebnisse
 
-https://kerstinpierick.github.io/Studentinnen-in-MINT-Faechern/
+**Journalistisches Stück: **
+
+[https://kerstinpierick.github.io/Studentinnen-in-MINT-Faechern](https://kerstinpierick.github.io/Studentinnen-in-MINT-Faechern)
+
+
+**Datenanalyse und Code: **
+
+[https://github.com/KerstinPierick/Studentinnen-in-MINT-Faechern](https://github.com/KerstinPierick/Studentinnen-in-MINT-Faechern)
+
