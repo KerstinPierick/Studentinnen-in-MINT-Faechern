@@ -1,7 +1,8 @@
 ---
-title: "Die Präsentation"
+title: "Von Ingenieuren und Romanistikerinnen"
+subtitle: "Die Entwicklung des Frauenanteils unter den Studierenden von 1998 bis 2017"
 author: "Roman Link und Kerstin Pierick"
-date: "February 26, 2019"
+date: "March 9, 2019"
 output: beamer_presentation
 ---
 
@@ -11,8 +12,14 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Das Thema
 
-Hat sich in den letzten zwanzig Jahren der Frauenanteil in MINT-Fächern überproportional geändert?
+Frauenanteil in Studiengängen 1998 bis 2017
 
+ - "Klassischen Männer- und Frauenfächer" immer noch männlich/weiblich dominiert?
+ - Entwicklung des Frauenanteils in der Zeit - unterschiedliche Entwicklungen in den Studiengängen?
+     - Abhängigkeit des zeitlichen Effekts vom Frauenanteil zum Ausgangszeitpunkt?
+ - Sonderstellung der MINT-Fächer?
+  
+ 
 ## Die Daten
 
 - Quelle: Statistisches Bundesamt Deutschland (www.destatis.de) 
@@ -42,10 +49,10 @@ Hat sich in den letzten zwanzig Jahren der Frauenanteil in MINT-Fächern überpr
   - Interaktive Abbildungen: ggplotly (R-Paket)
   - HTML-Dokument mit Text und Abbildungen: R Markdown
   - Präsentation: Latex Beamer in R Markdown
-  - Versionsverwaltung, Backup, Provider für die Internetseite: GitHub
+  - Versionsverwaltung, Backup, Website: GitHub
 
 
-## Interview mit ExpertIn
+## Interview mit Expertin
 
 Angefragt: 
 
@@ -54,6 +61,13 @@ Angefragt:
  - Anna Lena Martins, Gleichstellungsbeauftragte Mathematik, Uni Göttingen
  - **Dr. Sophie-Charlotte August, Gleichstellungsbeauftragte Physik, Uni Göttingen**
  
+## Recherche
+
+ - Zeitungsartikel
+ - wissenschaftliche Artikel
+ - Projekte zur Förderung von Frauen in MINT-Fächern
+ - Wikipedia-Artikel
+ 
 ## Das Stück
 
-Link zur Website
+https://kerstinpierick.github.io/Studentinnen-in-MINT-Faechern/
