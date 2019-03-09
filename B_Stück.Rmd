@@ -1,5 +1,5 @@
 ---
-title: "Von Ingenieuren und Romanistikerinnen"
+title: "Von Ingenieuren und Romanistinnen"
 subtitle: "Die Entwicklung des Frauenanteils unter den Studierenden von 1998 bis 2017"
 author: "Roman Link und Kerstin Pierick"
 date: "März 2019"
