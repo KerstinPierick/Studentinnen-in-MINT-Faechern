@@ -1,0 +1,60 @@
+---
+title: "Von Ingenieuren und Romanistinnen"
+subtitle: "Die Entwicklung des Frauenanteils unter den Studierenden von 1998 bis 2017"
+author: "Roman Link und Kerstin Pierick"
+date: "März 2019"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+# Skript mit Abbildungen laden
+source("03_Gute_Abbildungen.R")
+```
+
+
+## Berufswahl: Immer noch traditionell 
+
+Einleitung ins Thema
+
+- Mädchen sind in der Schule (auch in MINT-Fächern) schon seit mehreren Jahrzehnten erfolgreicher, dennoch wählen sie keine MINT-Berufe
+- Genausosehr sind Männer immer noch in traditionellen Frauenberufen unterrepräsentiert
+
+- Förderprojekte für Frauen in MINT
+
+Um zu untersuchen, ob sich diese Fördermaßnahmen in den Studierendenzahlen widerspiegeln und ob sich insbesondere in den letzten Jahrzehnten der Frauenanteil in unterschiedlichen Fachbereichen in unterschiedliche Richtungen bewegt hat, haben wir einen Datensatz des [Statistischen Bundesamtes Deutschland](www.destatis.de) mit den Anzahlen der Studierenden an deutschen Hochschulen seit 1998 aufbereitet. 
+
+## Änderungen des Frauenanteils in verschiedenen Fachbereichen
+
+Die Studierendenzahlen steigen insgesamt in allen Fächergruppen und bei beiden Geschlechtern. Doch hat sich der Frauenanteil über die Zeit verändert, und gibt es dabei Unterschiede zwischen den Fächergruppen?
+
+Die gröbsten Unterschiede zwischen den Disziplinen, in Abbildung 1 als schwarze Linien dargestellt, haben sich seit 1998 nicht geändert: Insgesamt betrachtet sind männliche Studenten in den Bereichen Ingenieurwissenschaften und Sport deutlich in der Überzahl. Ein annähernd ausgeglichenes Geschlechterverhältnis gibt es in den Fächergruppen Mathematik/Naturwissenschaften und Rechts-, Wirtschafts- und Sozialwissenschaften. Mehr Frauen als Männer sind in den Agrar-, Forst-, Ernährungswissenschaften und Veterinärmedizin, Kunst, Medizin und Geisteswissenschaften eingeschrieben. Dabei gab es in fast allen Fächergruppen einen Aufwärtstrend. Die einzigen Ausnahmen sind die stagnierenden Frauenanteile bei Studierenden der Agrar/Forst/Ernährungswiss./Veterinärmedizin und Kunst sowie der sinkende Frauenanteil im Sport.
+
+Betrachtet man die einzelnen Studienbereiche anstelle der Gesamt-Trends der Fächergruppen (dargestellt als  blaue Linien) ist augenfällig, dass es über den beobachteten Zeitraum in vielen männerdominierten Disziplinen zu einer Zunahme des Frauenanteils kam, während das umgekehrte Phänomen - die Zunahme des Männeranteils eines bereits frauendominierten Fachs - die absolute Ausnahme darstellte. Stattdessen kam es zum Teil sogar noch zu einer Zunahme des Frauenanteils bereits frauendominierter Fächer. 
+
+Auffällig ist außerdem die Heterogenität innerhalb der Fächergruppen. Während die meisten Ingenieurwissenschaften nur einen Frauenanteil von unter 30% haben, wird ein Studium der Raumplanung oder Architektur inzwischen von mehr Frauen als Männern begonnen. In den Naturwissenschaften gibt es in der Physik mit Abstand die wenigsten Studienanfängerinnen, Biologie und Pharmazie sind jedoch deutlich weiblich dominiert. Im Bereich Agrar-, Forst-, Ernährungswissenschaften und Veterinärmedizin stechen die Forstwissenschaften durch einen besonders niedrigen Frauenanteil bei den StudienanfängerInnen heraus (2017: 34%); bei Veterinärmedizin und Ernährungs- und Haushaltswissenschaften lag er 2017 jeweils über 80%.
+
+```{r rel_stud, fig.cap="**Abb. 4** *Frauenanteil in Prozent bei Studierenden in Deutschland seit 1998. Blau: Frauenanteile der einzelnen Studienbereiche (Namen können durch Überstreichen mit dem Cursor abgerufen werden). Schwarz: Durchschnittliche Frauenanteile der Fächergruppen.*"}
+ggplotly(p_studi, width = 700, height = 1050)
+``` 
+
+## Sind Männerdomänen stärkeren Änderungen unterworfen?
+
+Da die Entwicklung innerhalb der Fächergruppen sehr heterogen ist und die Gruppen die unterschiedlichen Studienbereiche nicht gut widerspiegeln, ist die Frage interessant, ob es konsistente Trends bei Fächern gibt, die zu Beginn der untersuchten Zeitreihe in 1998 männerdominiert, frauendominiert oder in etwa gleich besetzt waren.
+Es ist auffällig, dass - auch wenn die Zunahme des Frauenanteils bei den Männerdomänen am größten ist - alle drei Gruppen im untersuchten Intervall im Mittel an Frauen dazugewinnen, selbst die Studienbereiche, die auch 1998 schon von überdurchschnittlich vielen Frauen studiert wurden.
+
+```{r rel_klass_stud, fig.cap= "**Abb. 7** *Änderungen des Frauenanteils unter der Studierenden bei Fächern, die 1998 frauendominiert, in etwa gleich besetzt und männerdominiert waren.*"}
+ggplotly(rel_klass_stud, width = 700, height = 400)
+```
+
+## Steigende Studierendenzahlen - mehr Frauen an den Unis
+
+- Der Zusammenhang: 
+
+```{r abs_klass_stud, fig.cap= "**Abb. 8** *Änderungen der Studierendenzahlen bei Fächern, die 1998 frauendominiert, in etwa gleich besetzt und männerdominiert waren.*"}
+ggplotly(abs_klass_stud, width = 700, height = 500)
+```

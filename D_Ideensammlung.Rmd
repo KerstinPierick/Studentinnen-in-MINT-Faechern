@@ -1,0 +1,19 @@
+---
+title: "Ideensammlung"
+author: "Roman Link und Kerstin Pierick"
+date: "February 28, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+"Statistisch belegbar sind die enormen Bildungsanstrengungen, die den Mädchen und Frauen in den vergangenen Jahrzehnten gelungen sind. Sie erwerben höhere Schulabschlüsse, ihr Ausbildungsstand ist hervorragend, der Anteil von Hochschulabsolventinnen ist signifikant gestiegen, Frauen promovieren, es gibt mehr weibliche Vorbilder und Role Models." Bundesministerium für Bildung und Forschung
+
+"Sie haben hervorragende Qualifikationen, oftmals bessere Schulnoten als ihre männlichen Altersgenossen und viele von ihnen bringen ein Interesse an Technik mit: Junge Frauen sind heute so gut ausgebildet wie nie zuvor und trotzdem ergreifen immer noch vergleichsweise wenige von ihnen ein MINT-Studium." Bundesministerium für Bildung und Forschung
+
+Wichtigstes Förderprogramm: "Komm mach MINT" - Nationaler Pakt für Frauen in MINT-Berufen
+
+Liste von weiteren MINT-Förderprogrammen:
+https://www.academics.de/ratgeber/mint-frauen-in-technischen-berufen
